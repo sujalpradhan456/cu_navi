@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Navigator | Chandigarh University</title>
+
+<style>
+:root {
+    --primary: #3157e5;
+    --primary-dark: #2444c5;
+    --bg: #f5f7fc;
+    --white: #ffffff;
+    --text: #172033;
+    --muted: #7b8498;
+    --border: #e8ebf3;
+    --green: #16a675;
+    --shadow: 0 8px 30px rgba(30, 45, 90, 0.06);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 245px;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 30px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--primary);
+    color: white;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.brand h2 {
+    font-size: 19px;
+    letter-spacing: -0.5px;
+}
+
+.brand p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.nav-label {
+    color: #a0a7b8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 15px 12px 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    border-radius: 11px;
+    color: #687187;
+    font-size: 14px;
+    margin-bottom: 5px;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    transition: .2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #edf1ff;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.nav-icon {
+    font-size: 18px;
+    width: 22px;
+    text-align: center;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 15px;
+    background: #f5f7ff;
+    border-radius: 13px;
+    font-size: 12px;
+    color: #65708a;
+    line-height: 1.6;
+}
+
+/* MAIN */
+
+.main {
+    margin-left: 245px;
+    width: calc(100% - 245px);
+    padding: 30px 36px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.breadcrumb strong {
+    color: var(--text);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.profile-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e7ecff;
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+/* HERO */
+
+.hero {
+    background: linear-gradient(120deg, #3157e5, #637cf2);
+    border-radius: 22px;
+    padding: 35px;
+    color: white;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 28px;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,.17);
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-bottom: 17px;
+}
+
+.hero h1 {
+    font-size: clamp(26px, 3vw, 38px);
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #e2e8ff;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    position: relative;
+    max-width: 650px;
+}
+
+.search-row {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    padding: 6px;
+    gap: 8px;
+    box-shadow: 0 8px 25px rgba(15, 35, 100, .12);
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.search-row button {
+    background: var(--primary);
+    color: white;
+    padding: 0 22px;
+    border-radius: 9px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.search-row button:hover {
+    background: var(--primary-dark);
+}
+
+.suggestions {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(20, 30, 70, .15);
+    z-index: 20;
+    overflow: hidden;
+}
+
+.suggestion {
+    padding: 13px 17px;
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+}
+
+.suggestion:hover {
+    background: #f0f3ff;
+    color: var(--primary);
+}
+
+/* SECTION */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    letter-spacing: -.4px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.section-heading button {
+    background: transparent;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* QUICK CARDS */
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.quick-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 21px;
+    text-align: left;
+    transition: .25s;
+    box-shadow: var(--shadow);
+}
+
+.quick-card:hover {
+    transform: translateY(-4px);
+    border-color: #cbd5ff;
+    box-shadow: 0 12px 30px rgba(49, 87, 229, .10);
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    margin-bottom: 17px;
+}
+
+.blue { background: #edf1ff; }
+.green { background: #e7f8f1; }
+.orange { background: #fff2e5; }
+.purple { background: #f2eaff; }
+
+.quick-card h3 {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.quick-card p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* LOWER GRID */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.panel-title h2 {
+    font-size: 17px;
+}
+
+.panel-title span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* C3 FLOOR SELECTOR */
+
+.building-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.building-icon {
+    width: 48px;
+    height: 48px;
+    background: #edf1ff;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+}
+
+.building-info h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.building-info p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.floor-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.floor-buttons {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.floor-btn {
+    padding: 12px 5px;
+    border: 1px solid var(--border);
+    background: #fafbff;
+    border-radius: 9px;
+    color: #687187;
+    font-size: 12px;
+    transition: .2s;
+}
+
+.floor-btn:hover,
+.floor-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.floor-description {
+    margin-top: 18px;
+    padding: 15px;
+    background: #f6f8ff;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #66718a;
+    line-height: 1.7;
+}
+
+/* MAP */
+
+.map-area {
+    height: 240px;
+    border-radius: 14px;
+    background: #edf2e9;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e2e8dd;
+}
+
+.map-road {
+    position: absolute;
+    background: #fff;
+    border: 4px solid #dfe5db;
+}
+
+.road-horizontal {
+    width: 120%;
+    height: 42px;
+    left: -10%;
+    top: 48%;
+}
+
+.road-vertical {
+    width: 42px;
+    height: 130%;
+    top: -15%;
+    left: 47%;
+}
+
+.map-block {
+    position: absolute;
+    background: #d4e3d0;
+    border: 2px solid #c3d7be;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    color: #45664a;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.map-block:hover {
+    background: #bdd6b7;
+    transform: scale(1.04);
+}
+
+.block-a { width: 75px; height: 55px; left: 12%; top: 15%; }
+.block-b { width: 85px; height: 65px; right: 12%; top: 12%; }
+.block-c { width: 85px; height: 60px; left: 12%; bottom: 12%; }
+.block-d { width: 90px; height: 65px; right: 12%; bottom: 12%; }
+
+.map-pin {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,.2));
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+
+.map-caption {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 3px 10px #00000010;
+    white-space: nowrap;
+}
+
+.map-note {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #172033;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    box-shadow: 0 10px 30px #0002;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: .3s;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 750px) {
+    .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+    }
+
+    .brand {
+        padding: 0 3px 25px;
+    }
+
+    .brand h2,
+    .brand p,
+    .nav-item span:not(.nav-icon),
+    .nav-label,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 14px 5px;
+    }
+
+    .main {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+        padding: 20px 15px;
+    }
+
+    .hero {
+        padding: 25px 20px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .quick-grid {
+        gap: 10px;
+    }
+
+    .quick-card {
+        padding: 15px;
+    }
+
+    .topbar {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 430px) {
+    .quick-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .profile span {
+        display: none;
+    }
+
+    .search-row button {
+        padding: 0 13px;
+    }
+
+    .panel {
+        padding: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div>
+                <h2>CampusNav</h2>
+                <p>Chandigarh University</p>
+            </div>
+        </div>
+
+        <div class="nav-label">MENU</div>
+
+        <button class="nav-item active" onclick="goHome()">
+            <span class="nav-icon">⌂</span>
+            <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" onclick="focusSearch()">
+            <span class="nav-icon">⌕</span>
+            <span>Find a Location</span>
+        </button>
+
+        <button class="nav-item" onclick="selectBuilding()">
+            <span class="nav-icon">▦</span>
+            <span>C3 Building</span>
+        </button>
+
+        <button class="nav-item" onclick="showCampusMap()">
+            <span class="nav-icon">⌖</span>
+            <span>Campus Map</span>
+        </button>
+
+        <div class="nav-label">QUICK ACCESS</div>
+
+        <button class="nav-item" onclick="quickSearch('Library')">
+            <span class="nav-icon">▤</span>
+            <span>Library</span>
+        </button>
+
+        <button class="nav-item" onclick="quickSearch('Administration Office')">
+            <span class="nav-icon">▣</span>
+            <span>Administration</span>
+        </button>
+
+        <button class="nav-item" onclick="quickSearch('Skill Centre')">
+            <span class="nav-icon">◈</span>
+            <span>Skill Centres</span>
+        </button>
+
+        <div class="sidebar-bottom">
+            <strong>Campus Navigator</strong><br>
+            Find your destination with ease.
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">
+                Campus Navigator &nbsp; / &nbsp; <strong>Dashboard</strong>
+            </div>
+
+            <div class="profile">
+                <span>Student Portal</span>
+                <div class="profile-icon">S</div>
+            </div>
+        </header>
+
+        <!-- HERO SEARCH -->
+        <section class="hero">
+
+            <div class="hero-tag">✦ YOUR CAMPUS, SIMPLIFIED</div>
+
+            <h1>Find your way around campus.</h1>
+
+            <p>
+                Search for buildings, faculty cabins, classrooms and
+                important facilities across Chandigarh University.
+            </p>
+
+            <div class="search-box">
+
+                <div class="search-row">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Try 'C3 Building', 'Library' or 'Faculty Cabin'..."
+                        autocomplete="off"
+                        oninput="searchLocation()"
+                        onkeydown="handleEnter(event)"
+                    >
+
+                    <button onclick="performSearch()">Search ↗</button>
+                </div>
+
+                <div class="suggestions" id="searchResults"></div>
+
+            </div>
+        </section>
+
+        <!-- QUICK ACCESS -->
+        <section>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Quick Access</h2>
+                    <p>Jump directly to frequently visited places.</p>
+                </div>
+
+                <button onclick="focusSearch()">Explore all →</button>
+            </div>
+
+            <div class="quick-grid">
+
+                <button class="quick-card" onclick="quickSearch('Library')">
+                    <div class="card-icon blue">📚</div>
+                    <h3>University Library</h3>
+                    <p>Find library information and location.</p>
+                </button>
+
+                <button class="quick-card" onclick="quickSearch('Administration Office')">
+                    <div class="card-icon green">🏢</div>
+                    <h3>Admin Office</h3>
+                    <p>Locate administrative services.</p>
+                </button>
+
+                <button class="quick-card" onclick="quickSearch('Skill Centre')">
+                    <div class="card-icon orange">🎓</div>
+                    <h3>Skill Centres</h3>
+                    <p>Explore learning and skill facilities.</p>
+                </button>
+
+                <button class="quick-card" onclick="quickSearch('Faculty Cabin')">
+                    <div class="card-icon purple">👨‍🏫</div>
+                    <h3>Faculty Cabins</h3>
+                    <p>Search for faculty locations.</p>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- LOWER CONTENT -->
+        <div class="content-grid">
+
+            <!-- C3 BUILDING -->
+            <section class="panel" id="c3Panel">
+
+                <div class="panel-title">
+                    <h2>Indoor Navigation</h2>
+                    <span>Building explorer</span>
+                </div>
+
+                <div class="building-info">
+                    <div class="building-icon">🏬</div>
+
+                    <div>
+                        <h3>C3 Building</h3>
+                        <p>Explore floors and indoor facilities</p>
+                    </div>
+                </div>
+
+                <div class="floor-label">Select a floor</div>
+
+                <div class="floor-buttons">
+
+                    <button class="floor-btn active" onclick="selectFloor('G', this)">G</button>
+                    <button class="floor-btn" onclick="selectFloor('1', this)">1</button>
+                    <button class="floor-btn" onclick="selectFloor('2', this)">2</button>
+                    <button class="floor-btn" onclick="selectFloor('3', this)">3</button>
+                    <button class="floor-btn" onclick="selectFloor('4', this)">4</button>
+                    <button class="floor-btn" onclick="selectFloor('5', this)">5</button>
+                    <button class="floor-btn" onclick="selectFloor('6', this)">6</button>
+
+                </div>
+
+                <div class="floor-description" id="floorDescription">
+                    <strong>Ground Floor — C3</strong><br>
+                    Select a floor to explore its indoor map.
+                    Exact room locations will be added after verification.
+                </div>
+
+            </section>
+
+            <!-- CAMPUS MAP -->
+            <section class="panel" id="mapPanel">
+
+                <div class="panel-title">
+                    <h2>Campus Overview</h2>
+                    <span>Map preview</span>
+                </div>
+
+                <div class="map-area">
+
+                    <div class="map-road road-horizontal"></div>
+                    <div class="map-road road-vertical"></div>
+
+                    <button class="map-block block-a"
+                        onclick="quickSearch('Library')">
+                        Library
+                    </button>
+
+                    <button class="map-block block-b"
+                        onclick="selectBuilding()">
+                        C3 Building
+                    </button>
+
+                    <button class="map-block block-c"
+                        onclick="quickSearch('Administration Office')">
+                        Admin
+                    </button>
+
+                    <button class="map-block block-d"
+                        onclick="quickSearch('Skill Centre')">
+                        Skill Centre
+                    </button>
+
+                    <div class="map-pin">📍</div>
+                    <div class="map-caption">Campus Map Preview</div>
+
+                </div>
+
+                <p class="map-note">
+                    This is an illustrative map preview, not the official
+                    Chandigarh University campus map. Verified map data
+                    can be integrated into this section.
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* SEARCHABLE LOCATIONS
+   Add verified locations here as your project develops.
+*/
+
+const destinations = [
+    {
+        name: "C3 Building",
+        category: "Academic Building",
+        description: "Explore the seven floors of C3 Building.",
+        keywords: ["c3", "building", "indoor navigation"]
+    },
+    {
+        name: "Library",
+        category: "Learning Facility",
+        description: "University library location.",
+        keywords: ["books", "reading", "study"]
+    },
+    {
+        name: "Administration Office",
+        category: "Administrative Facility",
+        description: "Administrative services and student support.",
+        keywords: ["admin", "office", "administration"]
+    },
+    {
+        name: "Skill Centre",
+        category: "Learning Facility",
+        description: "Skill development and learning facilities.",
+        keywords: ["skills", "training", "centre"]
+    },
+    {
+        name: "Faculty Cabin",
+        category: "Faculty Location",
+        description: "Search for faculty cabins and staff locations.",
+        keywords: ["teacher", "professor", "faculty"]
+    },
+    {
+        name: "Classroom",
+        category: "Academic Facility",
+        description: "Search for classroom locations.",
+        keywords: ["room", "lecture", "class"]
+    }
+];
+
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+
+function searchLocation() {
+
+    const query = searchInput.value.trim().toLowerCase();
+
+    if (!query) {
+        searchResults.style.display = "none";
+        searchResults.innerHTML = "";
+        return;
+    }
+
+    const matches = destinations.filter(place => {
+
+        const searchableText =
+            place.name.toLowerCase() + " " +
+            place.category.toLowerCase() + " " +
+            place.keywords.join(" ").toLowerCase();
+
+        return searchableText.includes(query);
+    });
+
+    searchResults.innerHTML = "";
+
+    if (matches.length === 0) {
+
+        searchResults.innerHTML = `
+            <div class="suggestion">
+                No matching location found.
+                Try another keyword.
+            </div>
+        `;
+
+    } else {
+
+        matches.forEach(place => {
+
+            const item = document.createElement("div");
+
+            item.className = "suggestion";
+
+            item.innerHTML = `
+                <strong>${place.name}</strong>
+                <span style="color:#8991a5; font-size:11px;">
+                    — ${place.category}
+                </span>
+            `;
+
+            item.onclick = () => showDestination(place);
+
+            searchResults.appendChild(item);
+
+        });
+    }
+
+    searchResults.style.display = "block";
+}
+
+function performSearch() {
+
+    const query = searchInput.value.trim().toLowerCase();
+
+    if (!query) {
+        showToast("Please enter a location to search.");
+        return;
+    }
+
+    const match = destinations.find(place => {
+
+        const searchableText =
+            place.name.toLowerCase() + " " +
+            place.category.toLowerCase() + " " +
+            place.keywords.join(" ").toLowerCase();
+
+        return searchableText.includes(query);
+    });
+
+    if (match) {
+        showDestination(match);
+    } else {
+        showToast("No matching location found.");
+    }
+}
+
+function handleEnter(event) {
+
+    if (event.key === "Enter") {
+        performSearch();
+    }
+
+    if (event.key === "Escape") {
+        searchResults.style.display = "none";
+    }
+}
+
+function showDestination(place) {
+
+    searchInput.value = place.name;
+    searchResults.style.display = "none";
+
+    if (place.name === "C3 Building") {
+        selectBuilding();
+    }
+
+    showToast(place.name + " selected. " + place.description);
+}
+
+function quickSearch(name) {
+
+    searchInput.value = name;
+    performSearch();
+
+}
+
+function selectFloor(floor, button) {
+
+    document.querySelectorAll(".floor-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const floorName =
+        floor === "G" ? "Ground Floor" : "Floor " + floor;
+
+    document.getElementById("floorDescription").innerHTML = `
+        <strong>${floorName} — C3 Building</strong><br>
+        You selected ${floorName}.
+        The indoor map and verified room locations for this floor
+        can be added here.
+        <br><br>
+        <span style="color:#3157e5;font-weight:600;">
+            Selected floor: ${floor}
+        </span>
+    `;
+
+    showToast(floorName + " selected.");
+}
+
+function selectBuilding() {
+
+    document.getElementById("c3Panel").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    showToast("C3 Building selected.");
+}
+
+function showCampusMap() {
+
+    document.getElementById("mapPanel").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    showToast("Campus map preview opened.");
+}
+
+function focusSearch() {
+
+    searchInput.focus();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+function goHome() {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    searchInput.value = "";
+    searchResults.style.display = "none";
+
+}
+
+let toastTimer;
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2800);
+
+}
+
+/* Close suggestions when clicking outside */
+
+document.addEventListener("click", function(event) {
+
+    if (!event.target.closest(".search-box")) {
+        searchResults.style.display = "none";
+    }
+
+});
+
+</script>
+
+</body>
+</html>
