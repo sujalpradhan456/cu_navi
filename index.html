@@ -38,12 +38,11 @@ main{padding:19px 16px}.screen{display:none}.screen.active{display:block}.eyebro
 <div class="app">
 <header class="hero">
  <div class="brandrow"><div><div class="brand"><div class="logo">⌖</div>CU Nav</div><div class="subtitle">Chandigarh University · Campus guide</div></div><button class="secondary" style="background:#ffffff18;border-color:#ffffff30;color:white" onclick="showToast('CU Nav')">☰</button></div>
-
 </header>
 <main>
 <section class="screen active" id="home">
  <div class="eyebrow">Explore your university</div><h1>Find your way around CU.</h1>
-  <label class="searchbox"><span>⌕</span><input id="globalSearch" placeholder="Search teachers, rooms, offices..." autocomplete="off" onkeydown="if(event.key==='Enter')globalSearch(this.value)"></label>
+ <label class="searchbox"><span>⌕</span><input id="globalSearch" placeholder="Search teachers, rooms, offices..." autocomplete="off" onkeydown="if(event.key==='Enter')globalSearch(this.value)"></label>
  <div class="mapframe" id="mapFrame"><div class="mapmissing">Campus map image not found.<br>Upload <b>cu_campus_map.jpg</b> into the same GitHub folder as <b>index.html</b>.</div></div>
  <div class="sectionhead"><h2>Explore directories</h2></div>
  <div class="grid2">
@@ -57,43 +56,36 @@ main{padding:19px 16px}.screen{display:none}.screen.active{display:block}.eyebro
  </div>
  <div class="notice">Routes will only be shown as verified walking directions after campus paths and building positions have been checked. The map image alone cannot calculate a reliable route.</div>
 </section>
-
 <section class="screen" id="teachers">
  <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>Teachers</h2><p>Find faculty members and cabin details</p></div></div>
  <input class="field" id="teacherSearch" placeholder="Search teacher or department..." oninput="renderTeachers()">
  <div class="filters" id="teacherFilters"><button class="chip active" onclick="setTeacherFilter('All',this)">All</button><button class="chip" onclick="setTeacherFilter('C3',this)">C3</button></div>
  <div id="teacherList"></div>
 </section>
-
 <section class="screen" id="offices">
  <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>Administrative Offices & Centres</h2><p>Find student services, offices and facilities</p></div></div>
  <input class="field" id="officeSearch" placeholder="Search office or centre..." oninput="renderOffices()">
  <div class="filters"><button class="chip active" onclick="setOfficeFilter('All',this)">All</button><button class="chip" onclick="setOfficeFilter('Office',this)">Offices</button><button class="chip" onclick="setOfficeFilter('Centre',this)">Centres</button><button class="chip" onclick="setOfficeFilter('Facility',this)">Facilities</button></div>
  <div id="officeList"></div>
 </section>
-
 <section class="screen" id="c3">
  <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>C3 room finder</h2><p>Simple indoor directions · No floor-plan maps</p></div></div>
- <div class="card"><h3>Find a room in C3</h3><input class="field" id="roomSearch" placeholder="Enter room number, e.g. 610" oninput="renderRooms()"><p class="muted" style="margin:9px 0 0">Select a result to see its floor and written directions. Room records will populate from the verified directory.</p></div>
+ <div class="card"><h3>Find a room in C3</h3><input class="field" id="roomSearch" placeholder="Enter room number, e.g. 610" oninput="renderRooms()"><p class="muted" style="margin:9px 0 0">Search verified C3 teacher cabins and the Microsoft Skill Centre. Select View for floor, room and written directions.</p></div>
  <div id="roomList"></div>
 </section>
-
 <section class="screen" id="navigation">
  <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>Campus directions</h2><p>Choose where you are going</p></div></div>
  <div class="card stack"><label class="muted">Starting point</label><input class="field" id="fromPlace" placeholder="Where are you starting?"><label class="muted">Destination</label><input class="field" id="toPlace" placeholder="Where do you want to go?"><button class="primary" onclick="planRoute()">Get directions</button><div id="routeResult"></div></div>
  <div class="notice">The current project needs verified campus walking paths or route coordinates before it can draw reliable routes. Until then, CU Nav will not invent turn-by-turn directions.</div>
 </section>
-
 <section class="screen" id="saved">
  <div class="pagehead"><div><h2>Saved places</h2><p>Your favourite destinations</p></div></div><div id="savedList"></div>
 </section>
-
 <section class="screen" id="profile">
  <div class="pagehead"><div><h2>Settings & information</h2><p>CU Nav campus guide</p></div></div>
  <div class="card"><h3>About CU Nav</h3><p class="muted">A student-friendly campus directory and navigation app for Chandigarh University.</p><button class="secondary" onclick="installApp()">Install app</button></div>
- <div class="card"><h3>Directory data</h3><p class="muted">Teacher, room, office and centre records are stored in <b>data.js</b>. Replace the starter records with the verified rows from your university Excel directory.</p></div>
+ <div class="card"><h3>Directory data</h3><p class="muted">Teacher, room, office and centre records are stored in <b>data.js</b>.</p></div>
 </section>
-
 <section class="screen" id="detail">
  <div class="pagehead"><button class="back" onclick="goBack()">‹</button><div><h2 id="detailTitle">Location</h2><p>Destination information</p></div></div>
  <div class="card" id="detailBody"></div>
@@ -111,27 +103,151 @@ main{padding:19px 16px}.screen{display:none}.screen.active{display:block}.eyebro
 <script src="data.js"></script>
 <script>
 const DB = window.CUNAV_DATA || {teachers:[],offices:[],rooms:[],buildings:[]};
-let previousScreen='home', teacherFilter='All', officeFilter='All', deferredInstall=null;
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function openScreen(id){const current=document.querySelector('.screen.active');if(current)previousScreen=current.id;document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.screen===id));document.getElementById('globalSearch').value='';window.scrollTo(0,0);if(id==='teachers')renderTeachers();if(id==='offices')renderOffices();if(id==='c3')renderRooms();if(id==='saved')renderSaved();}
+let previousScreen='home',teacherFilter='All',officeFilter='All',deferredInstall=null;
+const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const exactC3=value=>String(value||'').trim().toLowerCase()==='block c3';
+
+function openScreen(id){
+ const current=document.querySelector('.screen.active');
+ if(current&&current.id!=='detail')previousScreen=current.id;
+ document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id===id));
+ document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.dataset.screen===id));
+ const input=document.getElementById('globalSearch');if(input)input.value='';
+ window.scrollTo({top:0,behavior:'instant'});
+ if(id==='teachers')renderTeachers();
+ if(id==='offices')renderOffices();
+ if(id==='c3')renderRooms();
+ if(id==='saved')renderSaved();
+}
 function goBack(){openScreen(previousScreen==='detail'?'home':previousScreen)}
-function showToast(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2200)}
-function locCard(item,type){const title=item.name||item.title||'Unnamed location';const where=[item.building,item.floor?`Floor ${item.floor}`:'',item.room?`Room ${item.room}`:''].filter(Boolean).join(' · ')||'Location details pending';return `<article class="card"><div class="row"><div class="avatar">${type==='teacher'?'👨‍🏫':'📍'}</div><div class="grow"><div class="name">${esc(title)}</div><div class="meta">${esc(item.department||item.category||where)}</div><div class="meta">${esc(where)}</div></div><button class="badge" onclick="showDetail('${type}',${JSON.stringify(title).replace(/'/g,"&#39;")})">View</button></div></article>`}
-function renderTeachers(){const q=(document.getElementById('teacherSearch')?.value||'').toLowerCase();const arr=DB.teachers.filter(x=>(teacherFilter==='All'||(x.building||'').toUpperCase().includes('C3'))&&JSON.stringify(x).toLowerCase().includes(q));document.getElementById('teacherList').innerHTML=arr.length?arr.map(x=>locCard(x,'teacher')).join(''):'<div class="empty">No teacher records found. Add verified faculty rows in data.js.</div>'}
-function renderOffices(){const q=(document.getElementById('officeSearch')?.value||'').toLowerCase();const arr=DB.offices.filter(x=>(officeFilter==='All'||(x.type||'').includes(officeFilter))&&JSON.stringify(x).toLowerCase().includes(q));document.getElementById('officeList').innerHTML=arr.length?arr.map(x=>locCard(x,'office')).join(''):'<div class="empty">No office or centre records found. Add verified locations in data.js.</div>'}
-function renderRooms(){const q=(document.getElementById('roomSearch')?.value||'').toLowerCase();const arr=DB.rooms.filter(x=>(x.building||'C3').toUpperCase()==='C3'&&JSON.stringify(x).toLowerCase().includes(q));document.getElementById('roomList').innerHTML=arr.length?arr.map(x=>locCard(x,'office')).join(''):'<div class="empty">No matching C3 room record. Room data will appear here when verified entries are added.</div>'}
-function setTeacherFilter(v,b){teacherFilter=v;document.querySelectorAll('#teacherFilters .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTeachers()}
-function setOfficeFilter(v,b){officeFilter=v;b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOffices()}
-function showDetail(type,title){const pool=type==='teacher'?DB.teachers:type==='room'?DB.rooms:DB.offices;const x=pool.find(y=>(y.name||y.title)===title)||{name:title};document.getElementById('detailTitle').textContent=title;const floor=x.floor?`Floor ${esc(x.floor)}`:'Not verified';const room=x.room||x.roomNumber||'Not listed';const building=x.building||'Not verified';document.getElementById('detailBody').innerHTML=`<div class="row"><div class="avatar">${type==='teacher'?'👨‍🏫':'📍'}</div><div><div class="name">${esc(title)}</div><div class="meta">${esc(x.department||x.category||'Campus location')}</div></div></div><div class="detailgrid"><span>Building</span><b>${esc(building)}</b></div><div class="detailgrid"><span>Floor</span><b>${floor}</b></div><div class="detailgrid"><span>Room / cabin</span><b>${esc(room)}</b></div><div class="detailgrid"><span>Details</span><b>${esc(x.details||'No additional verified details')}</b></div>${building==='C3'?`<ol class="steps"><li>Enter the C3 building.</li><li>Go to ${floor.toLowerCase()==='not verified'?'the verified floor':floor}.</li><li>Find room ${esc(room)}.</li></ol>`:'<p class="muted" style="margin-top:12px">Campus walking route requires verified path information.</p>'}<button class="secondary" onclick="savePlace('${type}','${esc(title).replace(/'/g,"\\'")}')">☆ Save location</button>`;openScreen('detail')}
-function savePlace(type,name){let a=JSON.parse(localStorage.getItem('cunavSaved')||'[]');if(!a.some(x=>x.name===name))a.push({type,name});localStorage.setItem('cunavSaved',JSON.stringify(a));showToast('Location saved')}
-function renderSaved(){const a=JSON.parse(localStorage.getItem('cunavSaved')||'[]');document.getElementById('savedList').innerHTML=a.length?a.map(x=>`<div class="card row"><div class="grow"><b class="name">${esc(x.name)}</b><div class="meta">${esc(x.type)}</div></div><button class="secondary" onclick="removeSaved('${esc(x.name).replace(/'/g,"\\'")}')">Remove</button></div>`).join(''):'<div class="empty">No saved locations yet.</div>'}
-function removeSaved(n){let a=JSON.parse(localStorage.getItem('cunavSaved')||'[]').filter(x=>x.name!==n);localStorage.setItem('cunavSaved',JSON.stringify(a));renderSaved()}
-function globalSearch(v){if(!v.trim())return;const q=v.toLowerCase();const t=DB.teachers.find(x=>JSON.stringify(x).toLowerCase().includes(q));const o=DB.offices.find(x=>JSON.stringify(x).toLowerCase().includes(q));if(t){openScreen('teachers');document.getElementById('teacherSearch').value=v;renderTeachers()}else if(o){openScreen('offices');document.getElementById('officeSearch').value=v;renderOffices()}}
-function planRoute(){const from=document.getElementById('fromPlace').value.trim(),to=document.getElementById('toPlace').value.trim();const box=document.getElementById('routeResult');if(!from||!to){box.innerHTML='<p class="muted">Enter both a starting point and destination.</p>';return}box.innerHTML=`<div class="notice">Route request saved locally: <b>${esc(from)}</b> → <b>${esc(to)}</b>. A verified walking route is not available yet. Campus path data must be added before turn-by-turn directions can be shown.</div>`}
-function installApp(){if(deferredInstall){deferredInstall.prompt();deferredInstall=null}else showToast('On Android Chrome, open ⋮ menu and choose Install app / Add to Home screen.')}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e});
-function loadMap(){const f=document.getElementById('mapFrame');const img=new Image();img.src='cu_campus_map.jpg';img.alt='Original Chandigarh University campus map';img.onload=()=>{f.innerHTML='';f.appendChild(img);img.style.width='100%';img.style.height='auto';img.style.display='block'};img.onerror=()=>{}}
+function showToast(message){
+ const el=document.getElementById('toast');el.textContent=message;el.style.display='block';
+ clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2300);
+}
+function getPool(type){if(type==='teacher')return DB.teachers||[];if(type==='room')return DB.rooms||[];return DB.offices||[]}
+function itemLocation(item){
+ const bits=[];if(item.building)bits.push(item.building);if(item.floor)bits.push('Floor '+item.floor);
+ if(item.location&&item.location!=='-')bits.push(item.location);
+ const room=item.room||item.roomNumber||item.roomNo;if(room)bits.push('Room '+room);
+ if(item.cabin&&item.cabin!=='-')bits.push('Cabin '+item.cabin);
+ return bits.join(' · ')||'Location details not verified';
+}
+function locCard(item,type,index){
+ const title=item.name||item.title||'Unnamed location';
+ const secondary=item.department||item.type||item.category||'';
+ return `<article class="card"><div class="row"><div class="avatar">${type==='teacher'?'👨‍🏫':'📍'}</div>
+ <div class="grow"><div class="name">${esc(title)}</div><div class="meta">${esc(secondary)}</div><div class="meta">${esc(itemLocation(item))}</div></div>
+ <button class="badge" type="button" onclick="showDetail('${type}',${index})">View</button></div></article>`;
+}
+function renderTeachers(){
+ const q=(document.getElementById('teacherSearch')?.value||'').trim().toLowerCase();
+ const all=DB.teachers||[];
+ const matches=all.map((item,index)=>({item,index})).filter(({item})=>(teacherFilter==='All'||exactC3(item.building))&&JSON.stringify(item).toLowerCase().includes(q));
+ document.getElementById('teacherList').innerHTML=matches.length?matches.map(({item,index})=>locCard(item,'teacher',index)).join(''):'<div class="empty">No matching teacher found.</div>';
+}
+function officeKind(item){
+ const name=String(item.name||'').toLowerCase(),type=String(item.type||item.category||'').toLowerCase();
+ if(name.includes('library')||type.includes('facility'))return 'Facility';
+ if(name.includes('centre')||name.includes('center')||name.includes('counselling')||type.includes('centre')||type.includes('center')||type.includes('research'))return 'Centre';
+ return 'Office';
+}
+function renderOffices(){
+ const q=(document.getElementById('officeSearch')?.value||'').trim().toLowerCase(),all=DB.offices||[];
+ const matches=all.map((item,index)=>({item,index})).filter(({item})=>(officeFilter==='All'||officeKind(item)===officeFilter)&&JSON.stringify(item).toLowerCase().includes(q));
+ document.getElementById('officeList').innerHTML=matches.length?matches.map(({item,index})=>locCard(item,'office',index)).join(''):'<div class="empty">No matching office, centre or facility found.</div>';
+}
+function c3Entries(){
+ const entries=[];
+ (DB.teachers||[]).forEach((item,index)=>{if(exactC3(item.building))entries.push({item,type:'teacher',index})});
+ (DB.rooms||[]).forEach((item,index)=>{if(exactC3(item.building||'Block C3'))entries.push({item,type:'room',index})});
+ (DB.offices||[]).forEach((item,index)=>{if(exactC3(item.building))entries.push({item,type:'office',index})});
+ return entries;
+}
+function renderRooms(){
+ const q=(document.getElementById('roomSearch')?.value||'').trim().toLowerCase();
+ const matches=c3Entries().filter(({item})=>JSON.stringify(item).toLowerCase().includes(q));
+ document.getElementById('roomList').innerHTML=matches.length?matches.map(({item,type,index})=>locCard(item,type,index)).join(''):'<div class="empty">No matching C3 room or facility found.</div>';
+}
+function setTeacherFilter(value,button){
+ teacherFilter=value;document.querySelectorAll('#teacherFilters .chip').forEach(el=>el.classList.remove('active'));button.classList.add('active');renderTeachers();
+}
+function setOfficeFilter(value,button){
+ officeFilter=value;button.parentElement.querySelectorAll('.chip').forEach(el=>el.classList.remove('active'));button.classList.add('active');renderOffices();
+}
+function showDetail(type,index){
+ const pool=getPool(type),item=pool[Number(index)];
+ if(!item){showToast('Sorry, this directory record could not be opened.');return}
+ const title=item.name||item.title||'Location',building=item.building||'Not verified';
+ const floorValue=item.floor?'Floor '+item.floor:'Not listed';
+ const roomValue=item.room||item.roomNumber||item.roomNo||'Not listed';
+ const cabinValue=item.cabin&&item.cabin!=='-'?item.cabin:'Not listed';
+ const locationValue=item.location&&item.location!=='-'?item.location:'Not listed';
+ const category=item.department||item.type||item.category||'Campus location';
+ let directions='<p class="muted" style="margin-top:12px">A verified campus walking route is not available for this location yet.</p>';
+ if(exactC3(building)){
+  const steps=['Enter Block C3.'];
+  if(item.floor)steps.push('Go to Floor '+esc(item.floor)+'.');
+  else if(locationValue!=='Not listed')steps.push('Go to '+esc(locationValue)+'.');
+  if(roomValue!=='Not listed')steps.push('Find room '+esc(roomValue)+'.');
+  if(cabinValue!=='Not listed')steps.push('Find cabin '+esc(cabinValue)+'.');
+  if(title==='Microsoft Skill Centre')steps.push('The Microsoft Skill Centre is on Level 1.');
+  directions='<ol class="steps">'+steps.map(step=>'<li>'+step+'</li>').join('')+'</ol>';
+ }
+ document.getElementById('detailTitle').textContent=title;
+ document.getElementById('detailBody').innerHTML=`<div class="row"><div class="avatar">${type==='teacher'?'👨‍🏫':'📍'}</div><div><div class="name">${esc(title)}</div><div class="meta">${esc(category)}</div></div></div>
+ <div class="detailgrid"><span>Building</span><b>${esc(building)}</b></div>
+ <div class="detailgrid"><span>Floor</span><b>${esc(floorValue)}</b></div>
+ <div class="detailgrid"><span>Location</span><b>${esc(locationValue)}</b></div>
+ <div class="detailgrid"><span>Room</span><b>${esc(roomValue)}</b></div>
+ <div class="detailgrid"><span>Cabin</span><b>${esc(cabinValue)}</b></div>
+ <div class="detailgrid"><span>Details</span><b>${esc(item.details||'No additional verified details')}</b></div>
+ ${item.hours&&item.hours!=='-'?`<div class="detailgrid"><span>Hours</span><b>${esc(item.hours)}</b></div>`:''}
+ <h3 style="margin-top:16px">Directions</h3>${directions}<button class="secondary" type="button" id="saveDetailButton">☆ Save location</button>`;
+ document.getElementById('saveDetailButton').addEventListener('click',()=>savePlace(type,Number(index),title));
+ openScreen('detail');
+}
+function savePlace(type,index,name){
+ let saved=[];try{saved=JSON.parse(localStorage.getItem('cunavSaved')||'[]')}catch(_){}
+ if(!saved.some(x=>x.type===type&&x.index===index)){saved.push({type,index,name});localStorage.setItem('cunavSaved',JSON.stringify(saved))}
+ showToast('Location saved');
+}
+function renderSaved(){
+ let saved=[];try{saved=JSON.parse(localStorage.getItem('cunavSaved')||'[]')}catch(_){}
+ const list=document.getElementById('savedList');
+ list.innerHTML=saved.length?saved.map((item,index)=>`<div class="card row"><div class="grow"><b class="name">${esc(item.name)}</b><div class="meta">${esc(item.type)}</div></div><button class="badge" type="button" onclick="showDetail('${esc(item.type)}',${Number(item.index)})">View</button><button class="secondary" type="button" onclick="removeSaved(${index})">Remove</button></div>`).join(''):'<div class="empty">No saved locations yet.</div>';
+}
+function removeSaved(index){
+ let saved=[];try{saved=JSON.parse(localStorage.getItem('cunavSaved')||'[]')}catch(_){}
+ saved.splice(Number(index),1);localStorage.setItem('cunavSaved',JSON.stringify(saved));renderSaved();
+}
+function globalSearch(value){
+ const q=String(value||'').trim().toLowerCase();if(!q)return;
+ const ti=(DB.teachers||[]).findIndex(x=>JSON.stringify(x).toLowerCase().includes(q));
+ if(ti>=0){openScreen('teachers');document.getElementById('teacherSearch').value=value;renderTeachers();return}
+ const oi=(DB.offices||[]).findIndex(x=>JSON.stringify(x).toLowerCase().includes(q));
+ if(oi>=0){openScreen('offices');document.getElementById('officeSearch').value=value;renderOffices();return}
+ if(q.includes('c3')||q.includes('room')){openScreen('c3');document.getElementById('roomSearch').value=value;renderRooms();return}
+ showToast('No matching location found. Try a teacher, office or centre name.');
+}
+function planRoute(){
+ const from=document.getElementById('fromPlace').value.trim(),to=document.getElementById('toPlace').value.trim(),box=document.getElementById('routeResult');
+ if(!from||!to){box.innerHTML='<p class="muted">Enter both a starting point and destination.</p>';return}
+ box.innerHTML=`<div class="notice">Route request: <b>${esc(from)}</b> → <b>${esc(to)}</b>. Turn-by-turn campus directions will be enabled after verified walking paths are added.</div>`;
+}
+function installApp(){
+ if(deferredInstall){deferredInstall.prompt();deferredInstall=null}
+ else showToast('On Android Chrome, open the ⋮ menu and choose Install app / Add to Home screen.');
+}
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event});
+function loadMap(){
+ const frame=document.getElementById('mapFrame');if(!frame)return;
+ const image=new Image();image.alt='Original Chandigarh University campus map';
+ image.onload=()=>{frame.innerHTML='';frame.appendChild(image);image.style.width='100%';image.style.height='auto';image.style.display='block'};
+ image.onerror=()=>{frame.innerHTML='<div class="mapmissing">Campus map image not found.<br>Make sure <b>cu_campus_map.jpg</b> is uploaded beside <b>index.html</b> in the GitHub repository.</div>'};
+ image.src='./cu_campus_map.jpg';
+}
 loadMap();
-if('serviceWorker'in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 </script>
-</body></html>
+</body>
+</html>
