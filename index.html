@@ -38,11 +38,12 @@ main{padding:19px 16px}.screen{display:none}.screen.active{display:block}.eyebro
 <div class="app">
 <header class="hero">
  <div class="brandrow"><div><div class="brand"><div class="logo">⌖</div>CU Nav</div><div class="subtitle">Chandigarh University · Campus guide</div></div><button class="secondary" style="background:#ffffff18;border-color:#ffffff30;color:white" onclick="showToast('CU Nav')">☰</button></div>
- <label class="searchbox"><span>⌕</span><input id="globalSearch" placeholder="Search teachers, rooms, offices..." autocomplete="off" onkeydown="if(event.key==='Enter')globalSearch(this.value)"></label>
+
 </header>
 <main>
 <section class="screen active" id="home">
  <div class="eyebrow">Explore your university</div><h1>Find your way around CU.</h1>
+  <label class="searchbox"><span>⌕</span><input id="globalSearch" placeholder="Search teachers, rooms, offices..." autocomplete="off" onkeydown="if(event.key==='Enter')globalSearch(this.value)"></label>
  <div class="mapframe" id="mapFrame"><div class="mapmissing">Campus map image not found.<br>Upload <b>cu_campus_map.jpg</b> into the same GitHub folder as <b>index.html</b>.</div></div>
  <div class="sectionhead"><h2>Explore directories</h2></div>
  <div class="grid2">
