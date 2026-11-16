@@ -312,16 +312,41 @@ button:active {
  <div class="eyebrow">Explore your university</div><h1>Find your way around CU.</h1>
  <label class="searchbox"><span>⌕</span><input id="globalSearch" placeholder="Search teachers, rooms, offices..." autocomplete="off" onkeydown="if(event.key==='Enter')globalSearch(this.value)"></label>
  <div class="mapframe" id="mapFrame"><div class="mapmissing">Campus map image not found.<br>Upload <b>cu_campus_map.jpg</b> into the same GitHub folder as <b>index.html</b>.</div></div>
- <div class="sectionhead"><h2>Explore directories</h2></div>
  <div class="grid2">
-  <button class="feature" onclick="openScreen('teachers')"><div class="ico">👨‍🏫</div><strong>Teachers</strong><small>Find faculty, departments and cabin numbers</small></button>
-  <button class="feature" onclick="openScreen('offices')"><div class="ico">🏢</div><strong>Administrative Offices & Centres</strong><small>Find offices, skill centres and facilities</small></button>
- </div>
- <div class="sectionhead"><h2>Quick access</h2></div>
- <div class="grid2">
-  <button class="feature" onclick="openScreen('navigation')"><div class="ico">🧭</div><strong>Campus directions</strong><small>Choose a starting point and destination</small></button>
-  <button class="feature" onclick="openScreen('c3')"><div class="ico">🏬</div><strong>C3 room finder</strong><small>Find a floor and room with simple directions</small></button>
- </div>
+
+  <button class="feature" onclick="openScreen('teachers')">
+    <div class="ico">♙</div>
+    <strong>Teachers</strong>
+    <small>Find faculty, departments and cabin numbers</small>
+  </button>
+
+  <button class="feature" onclick="openScreen('offices')">
+    <div class="ico">▦</div>
+    <strong>Offices & Centres</strong>
+    <small>Find offices, skill centres and facilities</small>
+  </button>
+
+</div>
+
+<div class="sectionhead">
+  <h2>Quick access</h2>
+</div>
+
+<div class="grid2">
+
+  <button class="feature" onclick="openScreen('navigation')">
+    <div class="ico">⌖</div>
+    <strong>Campus directions</strong>
+    <small>Find your way around the university</small>
+  </button>
+
+  <button class="feature" onclick="openScreen('c3')">
+    <div class="ico">▤</div>
+    <strong>C3 room finder</strong>
+    <small>Find teachers, rooms and facilities</small>
+  </button>
+
+</div>
  <div class="notice">Routes will only be shown as verified walking directions after campus paths and building positions have been checked. The map image alone cannot calculate a reliable route.</div>
 </section>
 <section class="screen" id="teachers">
