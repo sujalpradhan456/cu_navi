@@ -1,4 +1,5 @@
 const teachers = [
+["Dr. Sundeep Singh","-","711","-"],
 ["Dr. Vijay Kumar","-","701 A","-"],
 ["Er. Rakesh Kumar","E2675","610","1"],
 ["Dr. Rohan Gupta","E12621","610","2"],
@@ -146,7 +147,7 @@ const offices = [
     name: "Main Campus Administrative Office",
     type: "Office",
     building: "Main Campus Admin Building",
-    location: "NH-05",
+    location: "A1",
     details: "Primary administrative services",
     hours: "Daily: 9:00 AM - 9:00 PM"
 },
@@ -163,7 +164,7 @@ const offices = [
     name: "Academic Block B1",
     type: "Facility",
     building: "Academic Block B1",
-    location: "Block 17",
+    location: "Towards right side after entering Gate 2 ",
     details: "Academic block"
 },
 
@@ -171,7 +172,7 @@ const offices = [
     name: "Academic Block - C2",
     type: "Facility",
     building: "Academic Block - C2",
-    location: "Not verified",
+    location: "Adjacent to main ground",
     details: "Academic block"
 },
 
