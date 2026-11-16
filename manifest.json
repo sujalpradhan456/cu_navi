@@ -9,7 +9,7 @@
   "theme_color": "#075B46",
   "icons": [
     {
-      "src": "cu-nav-logo.png",
+      "src": "cu-nav-logo.png.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
