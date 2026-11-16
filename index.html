@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#075b46">
+
 <title>CU Nav — Chandigarh University</title>
 
-    * {
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-h1, h2, h3, h4, button {
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
 <style>
 :root {
     --green: #075b46;
@@ -31,13 +25,13 @@ h1, h2, h3, h4, button {
 
 * {
     box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
     margin: 0;
     background: #eef4ef;
     color: var(--ink);
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 button, input {
@@ -194,101 +188,22 @@ button {
     margin: 5px 0 12px;
 }
 
-/* CAMPUS MAP */
+/* CAMPUS MAP — original image, kept at its natural proportions */
 
 .mapcard {
-    height: 350px;
+    width: 100%;
     border-radius: 22px;
-    position: relative;
     overflow: hidden;
-    background: #dcefdc;
+    background: white;
     border: 1px solid #d4e6d7;
     box-shadow: var(--shadow);
 }
 
-.mapbg {
-    position: absolute;
-    inset: 0;
-    background-color: #dcefdc;
-    background-image:
-        linear-gradient(35deg, transparent 47%, #fff 48%, #fff 52%, transparent 53%),
-        linear-gradient(115deg, transparent 46%, #fff 47%, #fff 51%, transparent 52%),
-        linear-gradient(0deg, #cfe7d1 1px, transparent 1px),
-        linear-gradient(90deg, #cfe7d1 1px, transparent 1px);
-    background-size: 190px 160px, 210px 180px, 34px 34px, 34px 34px;
-}
-
-.tree {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #8bc78e;
-    box-shadow: 0 0 0 5px #a9d8a8aa;
-}
-
-.building {
-    position: absolute;
-    background: #176b52;
-    color: white;
-    border: 2px solid #e6f5e8;
-    border-radius: 8px;
-    padding: 10px 8px;
-    font-size: 11px;
-    font-weight: 750;
-    box-shadow: 0 4px 10px #164b3522;
-    text-align: center;
-    min-width: 78px;
-}
-
-.b1 { top: 15%; left: 9%; }
-.b2 { top: 18%; right: 8%; }
-.b3 { top: 49%; left: 9%; }
-.b4 { top: 57%; right: 9%; }
-.b5 { bottom: 9%; left: 39%; }
-
-.pin {
-    position: absolute;
-    top: 42%;
-    left: 48%;
-    font-size: 34px;
-    filter: drop-shadow(0 4px 3px #0003);
-}
-
-.mapcontrols {
-    position: absolute;
-    right: 12px;
-    bottom: 14px;
-    display: grid;
-    gap: 7px;
-}
-
-.mapcontrols button {
-    height: 38px;
-    width: 38px;
-    background: white;
-    color: var(--green);
-    border-radius: 12px;
-    font-size: 20px;
-    box-shadow: var(--shadow);
-}
-
-.maplabel {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #ffffffeb;
-    padding: 7px 10px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--green);
-}
-
-.mapnote {
-    font-size: 10px;
-    color: #61766a;
-    margin: 8px 3px 0;
+.mapcard img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 /* PLACE CARD */
@@ -669,50 +584,8 @@ button {
     <div class="sectiontitle">Campus Map</div>
 
     <div class="mapcard">
-
-        <div class="mapbg"></div>
-
-        <div class="maplabel">📍 Chandigarh University</div>
-
-        <div class="tree" style="top:35%;left:42%"></div>
-        <div class="tree" style="top:70%;left:75%"></div>
-        <div class="tree" style="top:20%;left:72%"></div>
-
-        <button class="building b1"
-        onclick="showPlace('Library')">Library</button>
-
-        <button class="building b2"
-        onclick="showPlace('Academic Block')">
-        Academic<br>Block
-        </button>
-
-        <button class="building b3"
-        onclick="showPlace('Administration Office')">
-        Admin Block
-        </button>
-
-        <button class="building b4"
-        onclick="showPlace('C3 Building')">
-        C3 Block
-        </button>
-
-        <button class="building b5"
-        onclick="showPlace('Hostel')">Hostel</button>
-
-        <div class="pin">📍</div>
-
-        <div class="mapcontrols">
-            <button onclick="toast('Zoom in')">＋</button>
-            <button onclick="toast('Zoom out')">－</button>
-            <button onclick="toast('Location access can be added')">◎</button>
-        </div>
-
+        <img src="cu_campus_map.jpg" alt="Official Chandigarh University campus map">
     </div>
-
-    <p class="mapnote">
-        Illustrative campus layout — official building positions
-        will be added after map verification.
-    </p>
 
     <div class="placecard">
 
