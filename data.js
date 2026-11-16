@@ -33,145 +33,176 @@ const teachers = [
 ["Dr. Rashmi","E15548","603","12"],
 ["Er. Poonam Saini","E10489","603","14"]
 ].map(t => {
-  const floor = Number(String(t[2]).match(/\d/)?.[0] || 0);
+    const floor = Number(String(t[2]).match(/\d/)?.[0] || 0);
 
-  return {
-    name: t[0],
-    ecode: t[1],
-    building: "Block C3",
-    room: t[2],
-    cabin: t[3],
-    floor: floor || null,
-    department: "Engineering Foundation-05",
-    headOfDepartment: "Dr. Sundeep Singh",
-    type: "Teacher"
-  };
-}));
+    return {
+        name: t[0],
+        ecode: t[1],
+        building: "Block C3",
+        room: t[2],
+        cabin: t[3],
+        floor: floor || null,
+        department: "Engineering Foundation-05",
+        headOfDepartment: "Dr. Sundeep Singh",
+        type: "Teacher"
+    };
+});
+
 
 const offices = [
+
 {
- name:"Microsoft Skill Centre",
- type:"Centre",
- building:"Block C3",
- floor:1,
- location:"Level 1",
- details:"Skill development and training centre"
+    name: "Microsoft Skill Centre",
+    type: "Centre",
+    building: "Block C3",
+    floor: 1,
+    location: "Level 1",
+    details: "Skill development and training centre"
 },
+
 {
- name:"Library",
- type:"Facility",
- building:"Not verified",
- location:"Not verified",
- details:"Library facility; building location not verified"
+    name: "Library",
+    type: "Facility",
+    building: "Block C3",
+    floor: 2,
+    location: "Level 2",
+    details: "University C3 Library"
 },
+
 {
- name:"Centre for Student Wellbeing (DSW Counselling)",
- type:"Centre",
- building:"Academic Block C3 Annexe",
- location:"Opposite the Basketball Court",
- details:"Student counselling and wellbeing services"
+    name: "Centre for Student Wellbeing (DSW Counselling)",
+    type: "Centre",
+    building: "Academic Block B3 ",
+    location: "Opposite the Basketball Court",
+    details: "Student counselling and wellbeing services"
 },
+
 {
- name:"Office of the Registrar",
- type:"Office",
- building:"Academic Block B1",
- location:"Room No. 207 (Level 2)",
- details:"Registrar administrative office"
+    name: "Office of the Registrar",
+    type: "Office",
+    building: "Academic Block B1",
+    location: "Room No. 207 (Level 2)",
+    details: "Registrar administrative office"
 },
+
 {
- name:"Registration & Transcripts Branch (General)",
- type:"Office",
- building:"Block No. 4",
- location:"Room No. 102",
- details:"Registration and transcripts (General category)"
+    name: "Registration & Transcripts Branch (General)",
+    type: "Office",
+    building: "Block No. B4",
+    location: "Room No. 102",
+    details: "Registration and transcripts (General category)"
 },
+
 {
- name:"Registration & Transcripts Branch (SC/ST)",
- type:"Office",
- building:"Block No. 1",
- location:"Room No. 204",
- details:"Registration and transcripts (SC/ST category)"
+    name: "Registration & Transcripts Branch (SC/ST)",
+    type: "Office",
+    building: "Block No. A1",
+    location: "Room No. 204",
+    details: "Registration and transcripts (SC/ST category)"
 },
+
 {
- name:"Scholarship Branch",
- type:"Office",
- building:"Academic Block 1",
- location:"Room No. 204",
- details:"Student scholarship processing and inquiries"
+    name: "Scholarship Branch",
+    type: "Office",
+    building: "Academic Block A1",
+    location: "Room No. 204",
+    details: "Student scholarship processing and inquiries"
 },
+
 {
- name:"Department of International Relations & Admissions",
- type:"Office",
- building:"Block 9 & Block 1",
- location:"Block 9 (Ground Level) & Block 1, Room No. 208",
- details:"International relations and admissions"
+    name: "Department of International Relations & Admissions",
+    type: "Office",
+    building: "Block 9 & Block A1",
+    location: "Block 9 (Ground Level) & Block 1, Room No. 208",
+    details: "International relations and admissions"
 },
+
 {
- name:"Alumni Association (Alumni Cell)",
- type:"Office",
- building:"Block-C1",
- location:"Room No. 213-C",
- details:"Chandigarh University Alumni Association office"
+    name: "Alumni Association (Alumni Cell)",
+    type: "Office",
+    building: "Block-C1",
+    location: "Room No. 213-C",
+    details: "Chandigarh University Alumni Association office",
+    hours: "Mon - Sat: 9:30 AM - 4:30 PM"
 },
+
 {
- name:"Main Admin Block (Block 1 / A1)",
- type:"Office",
- building:"Block 1 / A1 (Central Campus)",
- location:"Central Campus",
- details:"Chancellor's Office, Vice-Chancellor's Office and HR"
+    name: "Main Admin Block (Block 1 / A1)",
+    type: "Office",
+    building: "Block 1 / A1 (Central Campus)",
+    location: "Central Campus",
+    details: "Chancellor's Office, Vice-Chancellor's Office, Human Resources and academic offices"
 },
+
 {
- name:"Admin Block & Block B1/B2 Corridors",
- type:"Office",
- building:"Admin Block & Blocks B1/B2",
- location:"Corridors of B1/B2",
- details:"DSW, Controller of Examinations, Accounts/Fees, Transport and DCPD"
+    name: "Admin Block & Block B1/B2 Corridors",
+    type: "Office",
+    building: "Admin Block & Blocks B1/B2",
+    location: "Corridors of B1/B2",
+    details: "DSW, Controller of Examinations, Accounts/Fees, Transport and DCPD offices"
 },
+
 {
- name:"Main Campus Administrative Office",
- type:"Office",
- building:"Main Campus Admin Building",
- location:"NH-05",
- details:"Primary administrative services"
+    name: "Main Campus Administrative Office",
+    type: "Office",
+    building: "Main Campus Admin Building",
+    location: "NH-05",
+    details: "Primary administrative services",
+    hours: "Daily: 9:00 AM - 9:00 PM"
 },
+
 {
- name:"South Campus Office",
- type:"Office",
- building:"South Campus Building",
- location:"Campus Road",
- details:"Secondary administrative services"
+    name: "South Campus Office",
+    type: "Office",
+    building: "South Campus Building",
+    location: "Campus Road",
+    details: "Secondary administrative services"
 },
+
 {
- name:"Academic Block B1",
- type:"Facility",
- building:"Academic Block B1",
- location:"Block 17",
- details:"Academic block"
+    name: "Academic Block B1",
+    type: "Facility",
+    building: "Academic Block B1",
+    location: "Block 17",
+    details: "Academic block"
 },
+
 {
- name:"Academic Block - C2",
- type:"Facility",
- building:"Academic Block - C2",
- location:"Not verified",
- details:"Academic block"
+    name: "Academic Block - C2",
+    type: "Facility",
+    building: "Academic Block - C2",
+    location: "Not verified",
+    details: "Academic block"
 },
+
 {
- name:"Kalpana Chawla Space & Research Centre",
- type:"Centre",
- building:"B4",
- location:"In front of the Herbal Garden",
- details:"Space and research centre"
+    name: "Kalpana Chawla Space & Research Centre",
+    type: "Centre",
+    building: "B4",
+    location: "In front of the Herbal Garden",
+    details: "Space and research centre"
 }
+
 ];
 
+
 window.CUNAV_DATA = {
- teachers: teachers,
- offices: offices,
- rooms: [],
- buildings: [
-  {
-   name:"Block C3",
-   floors:["Ground","1","2","3","4","5","6","7"]
-  }
- ]
+    teachers: teachers,
+    offices: offices,
+    rooms: [],
+    buildings: [
+        {
+            name: "Block C3",
+            floors: [
+                "Ground",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+            ]
+        }
+    ]
 };
