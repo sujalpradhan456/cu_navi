@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#075b46">
+<meta name="theme-color" content="#0f1b2d">
 <meta name="description" content="CU Nav — Chandigarh University campus navigator">
 <title>CU Nav | Chandigarh University</title>
 <link rel="manifest" href="manifest.json">
@@ -12,535 +12,4036 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--green:#075b46;--green2:#0b765b;--pale:#eaf4ed;--ink:#17372e;--muted:#71827a;--line:#e4eee7;--bg:#f5f9f6;--white:#fff;--shadow:0 12px 34px #164b3510}
-*{box-sizing:border-box}body{margin:0;background:#eaf1ec;color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}
-.app{max-width:500px;min-height:100dvh;margin:auto;background:var(--bg);padding-bottom:92px;position:relative;box-shadow:0 0 50px #123b2510}
-.hero{background:linear-gradient(140deg,#064b3b,#0b795b);color:white;padding:calc(18px + env(safe-area-inset-top)) 19px 22px;border-radius:0 0 26px 26px}
-.brandrow{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-size:21px;font-weight:800;letter-spacing:-.7px}.logo{width:39px;height:39px;border-radius:13px;background:#ffffff20;display:grid;place-items:center;font-size:23px}.subtitle{font-size:11px;color:#d5e9df;margin:3px 0 0 50px}
-.searchbox{display:flex;gap:10px;align-items:center;background:white;color:var(--green);border-radius:15px;padding:0 14px;height:50px;margin-top:20px;box-shadow:0 7px 22px #003d2a20}.searchbox span{font-size:22px}.searchbox input{border:0;outline:0;width:100%;font-size:13px;color:var(--ink);background:transparent}
-main{padding:19px 16px}.screen{display:none}.screen.active{display:block}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.15px;font-weight:800;color:var(--green2)}h1,h2,h3,p{margin-top:0}h1{font-size:21px;letter-spacing:-.7px;margin:5px 0 14px}h2{font-size:18px;letter-spacing:-.45px;margin:0 0 4px}h3{font-size:14px;margin:0 0 8px}.muted{color:var(--muted);font-size:11px;line-height:1.6}.mapframe{border:1px solid #dce9df;border-radius:19px;background:white;overflow:hidden;box-shadow:var(--shadow)}.mapframe img{width:100%;height:auto;display:block}.mapmissing{padding:28px 18px;text-align:center;color:var(--muted);font-size:12px;line-height:1.7}.sectionhead{display:flex;align-items:end;justify-content:space-between;margin:22px 1px 10px}.sectionhead h2{font-size:17px}.linkbtn{border:0;background:transparent;color:var(--green2);font-size:11px;font-weight:800}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feature{background:white;border:1px solid var(--line);border-radius:17px;padding:15px 13px;text-align:left;box-shadow:var(--shadow);color:var(--ink);min-height:112px}.feature .ico{font-size:22px}.feature strong{display:block;font-size:13px;margin:8px 0 4px}.feature small{font-size:10px;color:var(--muted);line-height:1.4}
-.card{background:white;border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:11px;box-shadow:var(--shadow)}.row{display:flex;align-items:center;gap:11px}.avatar{width:42px;height:42px;flex:0 0 42px;border-radius:13px;background:var(--pale);display:grid;place-items:center;font-size:20px}.grow{flex:1;min-width:0}.name{font-size:13px;font-weight:800}.meta{font-size:10px;color:var(--muted);margin-top:4px}.badge{font-size:9px;color:var(--green);background:var(--pale);border-radius:20px;padding:6px 8px;white-space:nowrap}
-.filters{display:flex;gap:7px;overflow:auto;padding:2px 0 12px}.chip{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:30px;padding:8px 12px;font-size:10px;color:var(--muted)}.chip.active{background:var(--green);color:white;border-color:var(--green)}
-.field{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;background:white;outline:none;font-size:12px;color:var(--ink)}.field:focus{border-color:var(--green2)}.stack{display:grid;gap:9px}
-.primary{border:0;border-radius:12px;background:var(--green);color:white;padding:12px 15px;font-size:12px;font-weight:800}.secondary{border:1px solid var(--line);border-radius:12px;background:white;color:var(--green);padding:11px 14px;font-size:11px;font-weight:800}
-.detailgrid{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11px}.detailgrid span{color:var(--muted)}
-.steps{counter-reset:step;list-style:none;padding:0;margin:12px 0}.steps li{counter-increment:step;display:flex;gap:10px;margin:12px 0;font-size:12px;line-height:1.5}.steps li:before{content:counter(step);width:23px;height:23px;flex:0 0 23px;border-radius:50%;display:grid;place-items:center;background:var(--pale);color:var(--green);font-weight:800;font-size:10px}
-.tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(500px,100%);height:76px;padding:8px 9px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(16px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:10}.tab{border:0;background:transparent;color:#91a098;font-size:9px;display:grid;place-items:center;gap:2px}.tab span{font-size:20px}.tab.active{color:var(--green);font-weight:800}
-.back{border:0;background:var(--pale);color:var(--green);width:35px;height:35px;border-radius:11px;font-size:20px;margin-right:9px}.pagehead{display:flex;align-items:center;margin-bottom:16px}.pagehead p{margin:3px 0 0;color:var(--muted);font-size:10px}
-.empty{text-align:center;padding:24px 12px;color:var(--muted);font-size:12px}.notice{background:#fff8e8;border:1px solid #f2e4bf;color:#76591b;border-radius:12px;padding:11px;font-size:10px;line-height:1.5;margin-top:10px}
-.toast{position:fixed;z-index:30;bottom:88px;left:50%;transform:translateX(-50%);background:#17372e;color:white;padding:10px 15px;border-radius:12px;font-size:11px;display:none;white-space:nowrap}
-@media(min-width:700px){body{padding:22px 0}.app{border-radius:27px;overflow:hidden}.tabs{bottom:22px;border-radius:0 0 27px 27px}}
- /* =================================
-   CU NAV — PREMIUM UI UPGRADE
-================================= */
-
 :root {
-  --green: #08745a;
-  --green2: #109674;
-  --pale: #e9f5ef;
-  --ink: #172f28;
-  --muted: #82918a;
-  --line: #e8eee9;
-  --bg: #f7faf8;
+  --bg-canvas: #f5f4f0;
+  --bg-surface: #ffffff;
+  --bg-subtle: #ecebe6;
+  --bg-elevated: #faf9f6;
+  --navy: #0f1b2d;
+  --navy-soft: #1b2c44;
+  --navy-muted: #3d4d63;
+  --forest: #0b4f3c;
+  --forest-hover: #0d624a;
+  --mint: #e4f3ec;
+  --mint-border: #c5e3d4;
+  --mint-ink: #0e6b4f;
+  --ink: #111827;
+  --ink-secondary: #4b5563;
+  --muted: #6b7280;
+  --border: #e4e3dd;
+  --border-strong: #d4d2c9;
+  --shadow-xs: 0 1px 2px rgba(15, 27, 45, 0.04);
+  --shadow-sm: 0 2px 8px rgba(15, 27, 45, 0.05), 0 1px 2px rgba(15, 27, 45, 0.04);
+  --shadow-md: 0 10px 28px rgba(15, 27, 45, 0.08), 0 2px 6px rgba(15, 27, 45, 0.04);
+  --shadow-lg: 0 18px 42px rgba(15, 27, 45, 0.16);
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Overall appearance */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
-  background: #edf3ef;
-  letter-spacing: -0.15px;
+  margin: 0;
+  background: var(--bg-canvas);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
+button, input, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms var(--ease), background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* App Shell */
 .app {
-  background: #f7faf8;
-  max-width: 480px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-canvas);
+  padding-bottom: calc(74px + env(safe-area-inset-bottom));
 }
 
-/* Header */
-
-.hero {
-  background: linear-gradient(135deg, #064d3d, #08785b);
-  padding: calc(22px + env(safe-area-inset-top)) 20px 25px;
-  border-radius: 0 0 28px 28px;
-  box-shadow: 0 8px 25px #075b4620;
+/* 1. Premium Branding Header (Midnight Navy) */
+.topbar {
+  background: var(--navy);
+  color: #ffffff;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  box-shadow: 0 2px 14px rgba(15, 27, 45, 0.18);
 }
 
-.brand {
-  font-size: 23px;
-  letter-spacing: -1px;
+.topbar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
 }
 
-.logo {
-  width: 43px;
-  height: 43px;
-  border-radius: 15px;
-  background: #ffffff20;
+.brand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 44px;
+  text-align: left;
+  color: #ffffff;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* Main content */
-
-main {
-  padding: 22px 17px 30px;
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--forest);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
 }
 
-.eyebrow {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: #12866a;
+.brand-text {
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 25px;
-  line-height: 1.25;
-  letter-spacing: -1.1px;
-  margin: 7px 0 17px;
-}
-
-h2 {
-  font-size: 18px;
+.brand-title {
+  font-size: 16px;
   font-weight: 800;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
-/* Search */
-
-.searchbox {
-  height: 55px;
-  border-radius: 17px;
-  border: 1px solid #e8eee9;
-  box-shadow: 0 5px 20px #17372e0c;
-  margin: 18px 0 17px;
-  transition: .25s ease;
+.brand-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.2;
+  margin-top: 2px;
 }
 
-.searchbox:focus-within {
-  border-color: #109674;
-  box-shadow: 0 0 0 4px #10967418;
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 4px;
 }
 
-.searchbox input {
+.desktop-nav-btn {
+  color: rgba(255, 255, 255, 0.72);
   font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  min-height: 40px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* Campus map */
+.desktop-nav-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.desktop-nav-btn.active {
+  color: #ffffff;
+  background: var(--navy-soft);
+}
+
+.topbar-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--navy-soft);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-radius: 11px;
+  padding: 0 13px;
+  min-height: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.topbar-action:hover {
+  background: #253a57;
+}
+
+/* Main Content */
+main {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 14px 14px 24px;
+  flex: 1;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  animation: screenIn 200ms var(--ease);
+}
+
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Welcome Section */
+.welcome-block {
+  margin-bottom: 14px;
+}
+
+.welcome-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mint-ink);
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.welcome-title {
+  font-size: clamp(23px, 5vw, 31px);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  margin: 0 0 6px;
+  text-wrap: balance;
+}
+
+.welcome-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+  max-width: 58ch;
+}
+
+/* 3. Prominent Global Search Bar */
+.search-wrap {
+  position: relative;
+  margin-bottom: 18px;
+  z-index: 25;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  height: 54px;
+  padding: 0 10px 0 16px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(15, 27, 45, 0.08), var(--shadow-md);
+}
+
+.search-icon {
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.search-box input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.search-box input::placeholder {
+  color: var(--muted);
+}
+
+.search-clear {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: none;
+  place-items: center;
+  color: var(--muted);
+  background: var(--bg-canvas);
+  flex-shrink: 0;
+}
+
+.search-clear.visible {
+  display: grid;
+}
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  max-height: 360px;
+  overflow-y: auto;
+  display: none;
+  z-index: 30;
+}
+
+.search-results.open {
+  display: block;
+  animation: screenIn 160ms var(--ease);
+}
+
+.search-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy-muted);
+  padding: 8px 14px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-hit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  min-height: 54px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-hit:last-child {
+  border-bottom: 0;
+}
+
+.search-hit:hover {
+  background: var(--bg-elevated);
+}
+
+.search-hit-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.search-hit-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-hit-sub {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.search-hit-kind {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--forest);
+  flex-shrink: 0;
+}
+
+/* Home Layout Grid */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* 4. Campus Map Container */
+.map-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.map-toolbar-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+}
+
+.map-toolbar-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 13px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+}
 
 .mapframe {
-  border: 1px solid #dfe9e1;
-  border-radius: 19px;
+  background: var(--bg-surface);
   overflow: hidden;
-  background: white;
-  box-shadow: 0 8px 25px #17372e10;
+}
+
+.mapcanvas {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  background: #f0f2ef;
 }
 
 .mapframe img {
   width: 100%;
   height: auto;
   display: block;
+  user-select: none;
 }
 
-/* Section spacing */
-
-.sectionhead {
-  margin: 25px 2px 13px;
+.mapmissing {
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-.sectionhead h2 {
-  font-size: 17px;
+.mapmarkers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-/* Directory cards */
+.mapmarker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  border: 2px solid #ffffff;
+  background: var(--forest);
+  color: #ffffff;
+  border-radius: 999px;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(15, 27, 45, 0.28);
+  z-index: 2;
+  white-space: nowrap;
+}
 
-.grid2 {
+.mapmarker::after {
+  content: "";
+  position: absolute;
+  inset: -9px;
+}
+
+.mapmarker:hover {
+  background: var(--forest-hover);
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 4;
+}
+
+.mapmarker.active {
+  background: var(--navy);
+  border-color: #a7f3d0;
+  transform: translate(-50%, -50%) scale(1.16);
+  box-shadow: 0 0 0 4px rgba(15, 27, 45, 0.18), 0 6px 14px rgba(15, 27, 45, 0.34);
+  z-index: 5;
+}
+
+.mapmarker.start-pin {
+  background: var(--navy);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 27, 45, 0.2), 0 4px 12px rgba(15, 27, 45, 0.3);
+  z-index: 5;
+}
+
+.mapmarker.end-pin {
+  background: var(--forest);
+  border-color: #fde68a;
+  box-shadow: 0 0 0 4px rgba(11, 79, 60, 0.24), 0 4px 12px rgba(15, 27, 45, 0.3);
+  z-index: 6;
+}
+
+.mapinfo {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding: 13px 16px;
+  font-size: 12px;
+}
+
+.maplegend {
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.maplegend-tag {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.mapinfo-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 12px;
 }
 
-.feature {
-  min-height: 132px;
-  padding: 17px 14px;
-  border-radius: 19px;
-  border: 1px solid #e7eee9;
-  box-shadow: 0 5px 18px #17372e08;
-  background: white;
+.mapinfo-cat {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mint-ink);
+  margin-bottom: 2px;
 }
 
-.feature .ico {
-  width: 39px;
-  height: 39px;
+.mapinfo-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.mapinfo-desc {
+  color: var(--ink-secondary);
+  font-size: 12px;
+  margin: 5px 0 0;
+  line-height: 1.5;
+}
+
+.mapinfo-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  color: var(--navy);
   display: grid;
   place-items: center;
-  border-radius: 13px;
-  background: #edf7f0;
-  font-size: 20px;
+  flex-shrink: 0;
 }
 
-.feature strong {
-  font-size: 13px;
-  line-height: 1.4;
-  margin: 11px 0 5px;
+.mapinfo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 11px;
 }
 
-.feature small {
-  font-size: 10px;
-  line-height: 1.6;
-  color: #84918a;
-}
-
-/* General cards */
-
-.card {
-  border-radius: 18px;
-  border: 1px solid #e8eee9;
-  padding: 16px;
-  box-shadow: 0 5px 18px #17372e08;
-}
-
-/* Buttons and interactions */
-
-button {
-  -webkit-tap-highlight-color: transparent;
-  transition:
-    transform .16s ease,
-    box-shadow .2s ease,
-    background .2s ease;
-}
-
-button:active {
-  transform: scale(.96);
-}
-
-.feature:active {
-  transform: scale(.97);
-  box-shadow: 0 2px 8px #17372e12;
-}
-
-.primary:active,
-.secondary:active {
-  transform: scale(.95);
-}
-
-/* Bottom navigation */
-
-.tabs {
-  height: 79px;
-  background: #ffffffed;
-  border-top: 1px solid #e9efea;
-  box-shadow: 0 -5px 20px #17372e08;
-  backdrop-filter: blur(20px);
-}
-
-.tab {
-  font-size: 10px;
-  gap: 4px;
-}
-
-.tab span {
-  font-size: 21px;
-}
-
-.tab.active {
-  color: #08745a;
-}
-
-/* Teacher and office lists */
-
-.avatar {
-  border-radius: 14px;
-  background: #eaf5ee;
-}
-
-.name {
-  font-size: 13px;
-}
-
-.badge {
+.map-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--navy);
+  border-radius: 10px;
   padding: 8px 12px;
-  border-radius: 11px;
-  background: #eaf5ee;
+  min-height: 38px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-/* Input fields */
+.map-chip-btn:hover {
+  background: var(--mint);
+  border-color: var(--mint-border);
+  color: var(--forest);
+}
+
+/* 5 & 6. Consistent Section Headings & Uniform Feature Cards */
+.section-group {
+  margin-bottom: 20px;
+}
+
+.section-group:last-child {
+  margin-bottom: 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0 0 10px;
+  gap: 12px;
+}
+
+.section-head h2 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.section-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.feature-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 144px;
+  height: 100%;
+}
+
+.feature-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.feature-ico {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.feature-ico.navy {
+  background: #edf0f5;
+  color: var(--navy);
+}
+
+.feature-ico.mint {
+  background: var(--mint);
+  color: var(--forest);
+}
+
+.feature-arrow {
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+}
+
+.feature-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 4px;
+  letter-spacing: -0.015em;
+}
+
+.feature-desc {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* Honest Notice Banner */
+.notice {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--ink-secondary);
+  border-radius: var(--r-md);
+  padding: 13px 15px;
+  font-size: 12px;
+  line-height: 1.55;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  box-shadow: var(--shadow-xs);
+}
+
+.notice-ico {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--bg-canvas);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* Page Headers (Sub-screens) */
+.pagehead {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 12px;
+}
+
+.pagehead h2 {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.pagehead p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.back-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.back-btn:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+}
+
+/* Form Fields & Segmented Filter Controls */
+.field-wrap {
+  position: relative;
+  margin-bottom: 10px;
+}
 
 .field {
-  border-radius: 14px;
-  padding: 14px;
-  border-color: #e5ece7;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  outline: none;
+  font-size: 14px;
+  color: var(--ink);
+  box-shadow: var(--shadow-xs);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .field:focus {
-  border-color: #109674;
-  box-shadow: 0 0 0 3px #10967415;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(15, 27, 45, 0.08);
 }
 
-/* Page transitions */
-
-.screen.active {
-  animation: screenEnter .28s ease;
+.filter-bar, .floor-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+  scrollbar-width: none;
 }
 
-@keyframes screenEnter {
-  from {
-    opacity: 0;
-    transform: translateY(7px);
+.filter-bar::-webkit-scrollbar, .floor-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.chip, .floor-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  border-radius: 10px;
+  padding: 0 14px;
+  min-height: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floor-btn {
+  min-width: 48px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chip:hover, .floor-btn:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-elevated);
+}
+
+.chip.active, .floor-btn.active {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+  box-shadow: 0 2px 8px rgba(15, 27, 45, 0.16);
+}
+
+/* Directory List Cards */
+.list-meta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.list-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.item-card {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px 15px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+  min-height: 78px;
+}
+
+.item-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 12px;
+  background: #edf0f5;
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.avatar.kind-centre {
+  background: var(--mint);
+  color: var(--forest);
+}
+
+.avatar.kind-facility {
+  background: #f0eee7;
+  color: var(--navy);
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin: 0 0 3px;
+}
+
+.item-sub {
+  font-size: 12px;
+  color: var(--ink-secondary);
+  margin: 0 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-loc {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.item-chevron {
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+/* Action Buttons */
+.primary {
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--forest);
+  color: #ffffff;
+  padding: 0 18px;
+  min-height: 46px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.primary:hover {
+  background: var(--forest-hover);
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg-surface);
+  color: var(--navy);
+  padding: 0 15px;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.secondary:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+}
+
+.secondary.saved {
+  background: var(--mint);
+  border-color: var(--mint-border);
+  color: var(--forest);
+}
+
+/* Detail Screen */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 102px 1fr;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.detail-label {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 18px;
+}
+
+.steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin: 11px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.steps li::before {
+  content: counter(step);
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--mint);
+  color: var(--forest);
+  font-weight: 800;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* Campus Directions (Mobile-First Movement Demo) */
+#navigation .pagehead {
+  margin-bottom: 10px;
+}
+
+.nav-selector-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 9px 10px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 10px;
+}
+
+.nav-inputs-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+  align-items: center;
+}
+
+.nav-inputs-stack {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.nav-field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 0 10px;
+  min-height: 44px;
+}
+
+.nav-field-row:focus-within {
+  border-color: #2563eb;
+  background: var(--bg-surface);
+}
+
+.nav-pin-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nav-pin-dot.from {
+  background: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.18);
+}
+
+.nav-pin-dot.to {
+  background: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18);
+}
+
+.nav-field-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.nav-select {
+  border: 0;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  min-height: 42px;
+  cursor: pointer;
+}
+
+.nav-swap-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.nav-swap-btn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+}
+
+.nav-show-btn {
+  width: 100%;
+  margin-top: 8px;
+  min-height: 44px;
+  background: #2563eb;
+}
+
+.nav-show-btn:hover {
+  background: #1d4ed8;
+}
+
+.nav-map-shell {
+  margin: 0 -14px 10px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.nav-map-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(330px, 54dvh, 520px);
+  background: #edf0eb;
+  overflow: hidden;
+}
+
+.nav-map-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  background: #edf0eb;
+}
+
+.nav-map-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.nav-map-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1312px;
+  height: 1199px;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.nav-map-canvas.is-animating {
+  transition: transform 240ms var(--ease);
+}
+
+#navMapImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#navRouteSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 12;
+}
+
+#navMapMarkers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.nav-zoom-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 35;
+  display: grid;
+  border-radius: 11px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-zoom-btn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: var(--navy);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.nav-zoom-btn + .nav-zoom-btn {
+  border-top: 1px solid var(--border);
+}
+
+.nav-zoom-btn:hover {
+  background: var(--bg-elevated);
+}
+
+.nav-map-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 35;
+  background: rgba(15, 27, 45, 0.88);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 9px;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  max-width: calc(100% - 124px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-fit-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 35;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border-strong);
+  color: var(--navy);
+  border-radius: 10px;
+  padding: 0 11px;
+  min-height: 38px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-fit-btn:hover {
+  background: #ffffff;
+}
+
+.nav-playback-bar {
+  border-top: 1px solid var(--border);
+  background: var(--bg-surface);
+  padding: 10px 14px 12px;
+  display: grid;
+  gap: 9px;
+}
+
+.nav-transfer-card {
+  display: none;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.nav-transfer-card.visible {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-transfer-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-transfer-steps {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--navy);
+}
+
+.nav-transfer-steps li + li {
+  margin-top: 3px;
+}
+
+.nav-playback-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-playback-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.nav-ctrl-btn.primary-ctrl {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.nav-ctrl-btn.primary-ctrl:hover {
+  background: #1d4ed8;
+}
+
+.nav-ctrl-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.nav-speed-group {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.nav-speed-btn {
+  min-width: 42px;
+  min-height: 38px;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.nav-speed-btn.active {
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.nav-progress-wrap {
+  display: grid;
+  gap: 5px;
+}
+
+.nav-progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.nav-progress-route {
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-progress-status {
+  color: #1d4ed8;
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+.nav-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #15803d, #2563eb);
+  transition: width 80ms linear;
+}
+
+/* Unified Percentage-Locked Campus Markers & Animated Traveler */
+.lf-bldg-btn {
+  position: absolute;
+  pointer-events: auto;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  z-index: 22;
+}
+
+.lf-bldg-btn:active {
+  transform: none;
+}
+
+.lf-bldg-btn.is-selected {
+  z-index: 30;
+}
+
+.lf-bldg-btn.is-end {
+  z-index: 32;
+}
+
+.lf-bldg-muted {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(100, 116, 139, 0.58);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 4px rgba(15, 27, 45, 0.22);
+  transform: translate(-50%, -50%) scale(var(--pin-inv, 1));
+}
+
+.lf-bldg-idle-pill {
+  transform: translate(-50%, -50%) scale(var(--pin-inv, 1));
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--navy-muted);
+  border: 1px solid rgba(15, 27, 45, 0.28);
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 1px 5px rgba(15, 27, 45, 0.14);
+}
+
+.lf-pin-anchor {
+  position: relative;
+  width: 0;
+  height: 0;
+  transform: scale(var(--pin-inv, 1));
+}
+
+.lf-pin-halo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: selPulse 1.7s ease-out infinite;
+  pointer-events: none;
+}
+
+.lf-pin-halo.start {
+  background: rgba(21, 128, 61, 0.34);
+}
+
+.lf-pin-halo.end {
+  background: rgba(234, 88, 12, 0.36);
+}
+
+.lf-pin-halo.single {
+  background: rgba(37, 99, 235, 0.34);
+}
+
+.lf-pin-core {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #ffffff;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 27, 45, 0.36);
+}
+
+.lf-pin-core.start {
+  background: #15803d;
+}
+
+.lf-pin-core.end {
+  background: #ea580c;
+}
+
+.lf-pin-core.single {
+  background: #2563eb;
+}
+
+.lf-pin-label {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 10px;
+  padding: 4px 8px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(15, 27, 45, 0.24);
+  pointer-events: none;
+}
+
+.lf-pin-label.side-right {
+  top: 0;
+  left: 19px;
+  transform: translateY(-50%);
+}
+
+.lf-pin-label.side-left {
+  top: 0;
+  right: 19px;
+  transform: translateY(-50%);
+}
+
+.lf-pin-label.side-top {
+  bottom: 20px;
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.lf-pin-label.side-bottom {
+  top: 20px;
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.lf-pin-label.start {
+  border: 2px solid #15803d;
+}
+
+.lf-pin-label.end {
+  border: 2px solid #ea580c;
+}
+
+.lf-pin-label.single {
+  border: 2px solid #2563eb;
+}
+
+.lf-pin-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 2px 5px;
+  border-radius: 6px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.lf-pin-label.start .lf-pin-tag {
+  background: #15803d;
+}
+
+.lf-pin-label.end .lf-pin-tag {
+  background: #ea580c;
+}
+
+.lf-pin-label.single .lf-pin-tag {
+  background: #2563eb;
+}
+
+.lf-pin-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.lf-mover {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%) scale(var(--pin-inv, 1));
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 28;
+}
+
+.lf-mover-pulse {
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.34);
+  animation: moverPulse 1.4s ease-out infinite;
+}
+
+.lf-mover-core {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2.5px solid #ffffff;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 3px 10px rgba(15, 27, 45, 0.45);
+}
+
+@keyframes selPulse {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(1.75); opacity: 0; }
+}
+
+@keyframes moverPulse {
+  0% { transform: scale(0.75); opacity: 0.95; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+
+/* Saved & Profile */
+.saved-row {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.saved-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 15px 12px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-num {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.empty {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+/* 9. Modern Mobile Bottom Navigation */
+.tabs {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(64px + env(safe-area-inset-bottom));
+  padding: 6px 8px env(safe-area-inset-bottom);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  z-index: 40;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 48px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  position: relative;
+  border-radius: 12px;
+}
+
+.tab svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 180ms var(--ease);
+}
+
+.tab.active {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.tab.active svg {
+  color: var(--forest);
+  transform: translateY(-1px);
+}
+
+.tab.active::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  width: 24px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--forest);
+}
+
+/* Modal Sheet & Zoom Viewer */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 45, 0.54);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 60;
+}
+
+.modal-backdrop.open {
+  display: flex;
+  animation: fadeIn 180ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sheet {
+  width: 100%;
+  max-width: 560px;
+  max-height: 82dvh;
+  background: var(--bg-canvas);
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: sheetUp 220ms var(--ease);
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(24px); opacity: 0.6; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border-strong);
+  margin: 10px auto 4px;
+  flex-shrink: 0;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px 12px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.sheet-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.sheet-body {
+  padding: 12px 16px calc(20px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  display: grid;
+  gap: 8px;
+}
+
+.map-zoom-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 18, 30, 0.96);
+  z-index: 70;
+  display: none;
+  flex-direction: column;
+}
+
+.map-zoom-modal.open {
+  display: flex;
+  animation: fadeIn 160ms ease;
+}
+
+.map-zoom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.map-zoom-viewport {
+  flex: 1;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.map-zoom-stage {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  transition: width 200ms var(--ease);
+}
+
+.map-zoom-stage.zoomed {
+  width: 175%;
+  max-width: none;
+}
+
+.map-zoom-stage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  z-index: 80;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: #ffffff;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  display: none;
+  max-width: calc(100vw - 32px);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Responsive Tablet / Desktop Layout */
+@media (min-width: 840px) {
+  .app {
+    padding-bottom: 0;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .tabs {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+  }
+
+  main {
+    padding: 26px 24px 48px;
+  }
+
+  .home-layout {
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: 24px;
+  }
+
+  .nav-map-shell {
+    margin: 0 0 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+
+  .nav-map-stage {
+    height: 500px;
+  }
+
+  .list-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .modal-backdrop {
+    align-items: center;
+    padding: 24px;
+  }
+
+  .sheet {
+    border-radius: 22px;
+    max-height: 76dvh;
+  }
+
+  .sheet-handle {
+    display: none;
+  }
+
+  .toast {
+    bottom: 28px;
   }
 }
-
-/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 </style>
 </head>
 <body>
 <div class="app">
-<header class="hero">
- <div class="brandrow"><div><div class="brand"><div class="logo">⌖</div>CU Nav</div><div class="subtitle">Chandigarh University · Campus guide</div></div><button class="secondary" style="background:#ffffff18;border-color:#ffffff30;color:white" onclick="showToast('CU Nav')">☰</button></div>
-</header>
-<main>
-<section class="screen active" id="home">
- <div class="eyebrow">Explore your university</div><h1>Find your way around CU.</h1>
- <label class="searchbox"><span>⌕</span><input id="globalSearch" placeholder="Search teachers, rooms, offices..." autocomplete="off" onkeydown="if(event.key==='Enter')globalSearch(this.value)"></label>
- <div class="mapframe" id="mapFrame"><div class="mapmissing">Campus map image not found.<br>Upload <b>cu_campus_map.jpg</b> into the same GitHub folder as <b>index.html</b>.</div></div>
- <div class="grid2">
+  <!-- 1. PREMIUM BRANDING HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="brand-btn" type="button" onclick="openScreen('home')" aria-label="CU Nav Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5" fill="currentColor" stroke="none"></polygon>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">CU Nav</span>
+          <span class="brand-sub">Chandigarh University</span>
+        </span>
+      </button>
 
-  <button class="feature" onclick="openScreen('teachers')">
-    <div class="ico">♙</div>
-    <strong>Teachers</strong>
-    <small>Find faculty, departments and cabin numbers</small>
-  </button>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <button class="desktop-nav-btn active" type="button" data-screen="home" onclick="openScreen('home')">Home</button>
+        <button class="desktop-nav-btn" type="button" data-screen="teachers" onclick="openScreen('teachers')">Teachers</button>
+        <button class="desktop-nav-btn" type="button" data-screen="offices" onclick="openScreen('offices')">Offices</button>
+        <button class="desktop-nav-btn" type="button" data-screen="navigation" onclick="openScreen('navigation')">Directions</button>
+        <button class="desktop-nav-btn" type="button" data-screen="c3" onclick="openScreen('c3')">C3 Rooms</button>
+        <button class="desktop-nav-btn" type="button" data-screen="saved" onclick="openScreen('saved')">Saved</button>
+        <button class="desktop-nav-btn" type="button" data-screen="profile" onclick="openScreen('profile')">Profile</button>
+      </nav>
 
-  <button class="feature" onclick="openScreen('offices')">
-    <div class="ico">▦</div>
-    <strong>Offices & Centres</strong>
-    <small>Find offices, skill centres and facilities</small>
-  </button>
+      <button class="topbar-action" type="button" onclick="openBuildingsSheet()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 21h18"></path>
+          <path d="M5 21V7l8-4v18"></path>
+          <path d="M19 21V11l-6-4"></path>
+          <path d="M9 9v.01M9 13v.01M9 17v.01"></path>
+        </svg>
+        <span>Campus Blocks</span>
+      </button>
+    </div>
+  </header>
 
+  <main>
+    <!-- HOME SCREEN -->
+    <section class="screen active" id="home">
+      <!-- 2. WELCOME SECTION -->
+      <div class="welcome-block">
+        <div class="welcome-eyebrow">Chandigarh University · Campus Guide</div>
+        <h1 class="welcome-title">Find your way around CU.</h1>
+        <p class="welcome-desc">Locate faculty cabins, administrative offices, Block C3 rooms and campus landmarks.</p>
+      </div>
+
+      <!-- 3. PROMINENT GLOBAL SEARCH BAR -->
+      <div class="search-wrap" id="globalSearchWrap">
+        <label class="search-box" for="globalSearch">
+          <span class="search-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7.5"></circle>
+              <path d="m20 20-3.8-3.8"></path>
+            </svg>
+          </span>
+          <input id="globalSearch" type="search" placeholder="Search teachers, cabins, offices, Block C3 rooms..." autocomplete="off" oninput="handleGlobalInput(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();globalSearch(this.value);}">
+          <button class="search-clear" id="globalSearchClear" type="button" aria-label="Clear search" onclick="clearGlobalSearch()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+          </button>
+        </label>
+        <div class="search-results" id="globalSearchResults" role="listbox" aria-label="Search results"></div>
+      </div>
+
+      <div class="home-layout">
+        <!-- 4. ORIGINAL CAMPUS MAP CONTAINER -->
+        <div class="map-card">
+          <div class="map-toolbar">
+            <div>
+              <div class="map-toolbar-title">Campus Map</div>
+              <div class="map-toolbar-sub">Tap a pin to inspect verified building details</div>
+            </div>
+            <button class="icon-btn" type="button" onclick="openMapZoom()" aria-label="Expand campus map">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 3h6v6"></path>
+                <path d="M9 21H3v-6"></path>
+                <path d="M21 3l-7 7"></path>
+                <path d="M3 21l7-7"></path>
+              </svg>
+              <span>Expand</span>
+            </button>
+          </div>
+          <div class="mapframe" id="mapFrame">
+            <div class="mapmissing">Loading Chandigarh University campus map...</div>
+          </div>
+        </div>
+
+        <!-- 5–8. EXPLORE DIRECTORIES & QUICK ACCESS -->
+        <div>
+          <div class="section-group">
+            <div class="section-head">
+              <h2>Explore Directories</h2>
+              <span class="section-sub">Verified records</span>
+            </div>
+            <div class="feature-grid">
+              <button class="feature-card" type="button" onclick="openScreen('teachers')">
+                <span class="feature-top">
+                  <span class="feature-ico navy" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </span>
+                  <span class="feature-arrow" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </span>
+                </span>
+                <span>
+                  <span class="feature-title">Teachers</span>
+                  <span class="feature-desc">Find faculty, departments and cabin numbers</span>
+                </span>
+              </button>
+
+              <button class="feature-card" type="button" onclick="openScreen('offices')">
+                <span class="feature-top">
+                  <span class="feature-ico mint" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <path d="M9 20v-5h6v5"></path>
+                      <path d="M8 9h.01M12 9h.01M16 9h.01M8 13h.01M16 13h.01"></path>
+                    </svg>
+                  </span>
+                  <span class="feature-arrow" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </span>
+                </span>
+                <span>
+                  <span class="feature-title">Offices &amp; Centres</span>
+                  <span class="feature-desc">Admin offices, skill centres and facilities</span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="section-group">
+            <div class="section-head">
+              <h2>Quick Access</h2>
+              <span class="section-sub">Navigation tools</span>
+            </div>
+            <div class="feature-grid">
+              <button class="feature-card" type="button" onclick="openScreen('navigation')">
+                <span class="feature-top">
+                  <span class="feature-ico mint" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                    </svg>
+                  </span>
+                  <span class="feature-arrow" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </span>
+                </span>
+                <span>
+                  <span class="feature-title">Campus Directions</span>
+                  <span class="feature-desc">Compare campus blocks on the official map</span>
+                </span>
+              </button>
+
+              <button class="feature-card" type="button" onclick="openScreen('c3')">
+                <span class="feature-top">
+                  <span class="feature-ico navy" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path>
+                      <path d="M9 21V12h6v9"></path>
+                    </svg>
+                  </span>
+                  <span class="feature-arrow" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </span>
+                </span>
+                <span>
+                  <span class="feature-title">C3 Room Finder</span>
+                  <span class="feature-desc">All 7 floors of Block C3 with directions</span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="notice">
+            <span class="notice-ico" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4M12 8h.01"></path>
+              </svg>
+            </span>
+            <span>Turn-by-turn outdoor walking routes are shown only once verified campus path coordinates are available. Use the interactive map pins and C3 floor guide for verified locations.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHERS SCREEN -->
+    <section class="screen" id="teachers">
+      <div class="pagehead">
+        <button class="back-btn" type="button" onclick="openScreen('home')" aria-label="Back to home">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <div>
+          <h2>Teachers</h2>
+          <p>Faculty members, departments, rooms and cabin numbers</p>
+        </div>
+      </div>
+      <div class="field-wrap">
+        <input class="field" id="teacherSearch" type="search" placeholder="Search by name, department, room (610, 603, 711)..." oninput="renderTeachers()">
+      </div>
+      <div class="filter-bar" id="teacherFilters">
+        <button class="chip active" type="button" onclick="setTeacherFilter('All',this)">All Faculty</button>
+        <button class="chip" type="button" onclick="setTeacherFilter('C3',this)">Block C3</button>
+        <button class="chip" type="button" onclick="setTeacherFilter('610',this)">Room 610</button>
+        <button class="chip" type="button" onclick="setTeacherFilter('603',this)">Room 603</button>
+        <button class="chip" type="button" onclick="setTeacherFilter('Floor7',this)">Level 7</button>
+      </div>
+      <p class="list-meta tabular" id="teacherCount"></p>
+      <div class="list-grid" id="teacherList"></div>
+    </section>
+
+    <!-- OFFICES & CENTRES SCREEN -->
+    <section class="screen" id="offices">
+      <div class="pagehead">
+        <button class="back-btn" type="button" onclick="openScreen('home')" aria-label="Back to home">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <div>
+          <h2>Offices &amp; Centres</h2>
+          <p>Administrative offices, skill centres and campus facilities</p>
+        </div>
+      </div>
+      <div class="field-wrap">
+        <input class="field" id="officeSearch" type="search" placeholder="Search office, centre, building or facility..." oninput="renderOffices()">
+      </div>
+      <div class="filter-bar" id="officeFilters">
+        <button class="chip active" type="button" onclick="setOfficeFilter('All',this)">All</button>
+        <button class="chip" type="button" onclick="setOfficeFilter('Office',this)">Offices</button>
+        <button class="chip" type="button" onclick="setOfficeFilter('Centre',this)">Centres</button>
+        <button class="chip" type="button" onclick="setOfficeFilter('Facility',this)">Facilities</button>
+      </div>
+      <p class="list-meta tabular" id="officeCount"></p>
+      <div class="list-grid" id="officeList"></div>
+    </section>
+
+    <!-- C3 ROOM FINDER SCREEN -->
+    <section class="screen" id="c3">
+      <div class="pagehead">
+        <button class="back-btn" type="button" onclick="openScreen('home')" aria-label="Back to home">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <div>
+          <h2>C3 Room Finder</h2>
+          <p>All 7 floors of Block C3 · Clear text-based directions</p>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="field-wrap">
+          <input class="field" id="roomSearch" type="search" placeholder="Search room number (e.g. 610, 603, 701 A, 711) or faculty..." oninput="renderRooms()">
+        </div>
+        <div class="floor-bar" id="c3FloorBar" aria-label="Filter by Block C3 floor">
+          <button class="floor-btn active" type="button" onclick="setC3Floor('All',this)">All Floors</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('Ground',this)">Ground</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('1',this)">Floor 1</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('2',this)">Floor 2</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('3',this)">Floor 3</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('4',this)">Floor 4</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('5',this)">Floor 5</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('6',this)">Floor 6</button>
+          <button class="floor-btn" type="button" onclick="setC3Floor('7',this)">Floor 7</button>
+        </div>
+        <p class="section-sub" style="margin:0">Select a floor or search a room to inspect floor level, cabin number and step-by-step written directions.</p>
+      </div>
+      <p class="list-meta tabular" id="roomCount"></p>
+      <div class="list-grid" id="roomList"></div>
+    </section>
+
+    <!-- CAMPUS DIRECTIONS SCREEN (INTERACTIVE MOVEMENT DEMO) -->
+    <section class="screen" id="navigation">
+      <div class="pagehead">
+        <button class="back-btn" type="button" onclick="openScreen('home')" aria-label="Back to home">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <div>
+          <h2>Campus Directions</h2>
+          <p>Illustrative campus pathway &amp; building selector</p>
+        </div>
+      </div>
+
+      <div class="nav-selector-card">
+        <div class="nav-inputs-row">
+          <div class="nav-inputs-stack">
+            <label class="nav-field-row" for="fromPlace">
+              <span class="nav-pin-dot from" aria-hidden="true"></span>
+              <span class="nav-field-label">From</span>
+              <select class="nav-select" id="fromPlace" aria-label="Starting Building or Location"></select>
+            </label>
+            <label class="nav-field-row" for="toPlace">
+              <span class="nav-pin-dot to" aria-hidden="true"></span>
+              <span class="nav-field-label">To</span>
+              <select class="nav-select" id="toPlace" aria-label="Destination Building or Location"></select>
+            </label>
+          </div>
+          <button class="nav-swap-btn" type="button" aria-label="Swap starting point and destination" onclick="swapRoutePlaces()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 16V4m0 0L3 8m4-4 4 4"></path>
+              <path d="M17 8v12m0 0 4-4m-4 4-4-4"></path>
+            </svg>
+          </button>
+        </div>
+        <button class="primary nav-show-btn" type="button" onclick="planRoute()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+          <span>SHOW ROUTE</span>
+        </button>
+      </div>
+
+      <div class="nav-map-shell">
+        <div class="nav-map-stage" id="navMapStage">
+          <div class="nav-map-badge" id="navMapBadge">Illustrative Pathway Demo</div>
+          <button class="nav-fit-btn" type="button" onclick="fitRouteView()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+            <span>Fit Route</span>
+          </button>
+          <div class="nav-zoom-controls" aria-label="Map zoom controls">
+            <button class="nav-zoom-btn" type="button" aria-label="Zoom in map" onclick="zoomNavMap(1.35)">+</button>
+            <button class="nav-zoom-btn" type="button" aria-label="Zoom out map" onclick="zoomNavMap(1 / 1.35)">&minus;</button>
+          </div>
+          <div class="nav-map-viewport" id="navMapViewport" aria-label="Interactive Chandigarh University campus map">
+            <div class="nav-map-canvas" id="navMapCanvas">
+              <img id="navMapImg" src="./cu_campus_map.jpg" alt="Original Chandigarh University campus map" draggable="false">
+              <svg id="navRouteSvg" viewBox="0 0 1312 1199" preserveAspectRatio="none" aria-hidden="true">
+                <polyline id="navRouteCasing" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.96"></polyline>
+                <polyline id="navRouteBase" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.9"></polyline>
+                <polyline id="navRouteProgress" fill="none" stroke="#1d4ed8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1"></polyline>
+                <g id="navRouteArrows"></g>
+              </svg>
+              <div id="navMapMarkers"></div>
+              <div id="navMovingMarker" class="lf-mover" style="display:none" aria-hidden="true">
+                <span class="lf-mover-pulse"></span>
+                <span class="lf-mover-core">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="12 2 20 20 12 16 4 20 12 2"></polygon>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-playback-bar">
+          <div class="nav-transfer-card" id="navTransferCard" aria-live="polite">
+            <div class="nav-transfer-title" id="navTransferTitle">Same-Building Floor Transfer</div>
+            <ol class="nav-transfer-steps" id="navTransferSteps"></ol>
+          </div>
+
+          <div class="nav-playback-row" id="navPlaybackControls">
+            <div class="nav-playback-btns">
+              <button class="nav-ctrl-btn primary-ctrl" type="button" id="demoPlayBtn" onclick="toggleRoutePlayback()" disabled>Play</button>
+              <button class="nav-ctrl-btn" type="button" id="demoReplayBtn" onclick="replayDemoRoute()" disabled>Replay</button>
+            </div>
+            <div class="nav-speed-group" role="group" aria-label="Animation speed">
+              <button class="nav-speed-btn" type="button" data-speed="0.5" onclick="setRouteSpeed(0.5, this)">0.5x</button>
+              <button class="nav-speed-btn active" type="button" data-speed="1" onclick="setRouteSpeed(1, this)">1x</button>
+              <button class="nav-speed-btn" type="button" data-speed="2" onclick="setRouteSpeed(2, this)">2x</button>
+            </div>
+          </div>
+
+          <div class="nav-progress-wrap">
+            <div class="nav-progress-meta">
+              <span class="nav-progress-route" id="demoRouteLabel">Choose From &amp; To locations, then tap SHOW ROUTE</span>
+              <span class="nav-progress-status" id="demoRouteStatus">Ready</span>
+            </div>
+            <div class="nav-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="demoProgressTrack">
+              <div class="nav-progress-fill" id="demoProgressFill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notice">
+        <span class="notice-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4M12 8h.01"></path>
+          </svg>
+        </span>
+        <span>Illustrative pathway demonstration only. Highlighted routes follow general campus corridors on the map image and can be updated when verified GPS pathway data is added.</span>
+      </div>
+    </section>
+
+    <!-- SAVED PLACES SCREEN -->
+    <section class="screen" id="saved">
+      <div class="pagehead">
+        <div>
+          <h2>Saved Places</h2>
+          <p>Quick access to your bookmarked faculty cabins, offices and rooms</p>
+        </div>
+      </div>
+      <div class="list-grid" id="savedList"></div>
+    </section>
+
+    <!-- PROFILE SCREEN -->
+    <section class="screen" id="profile">
+      <div class="pagehead">
+        <div>
+          <h2>Profile &amp; Info</h2>
+          <p>CU Nav · Chandigarh University Campus Guide</p>
+        </div>
+      </div>
+
+      <div class="stat-strip" id="directoryStats"></div>
+
+      <div class="card" style="margin-bottom:12px">
+        <h3 style="margin:0 0 6px;font-size:15px;color:var(--navy)">Install CU Nav App</h3>
+        <p class="section-sub" style="margin:0 0 14px">Install CU Nav on your Android home screen or desktop for fast, offline-ready campus access.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button class="primary" type="button" onclick="installApp()">Install App</button>
+          <button class="secondary" type="button" onclick="openBuildingsSheet()">Browse Campus Blocks</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 6px;font-size:15px;color:var(--navy)">Verified Directory Data</h3>
+        <p class="section-sub" style="margin:0">All faculty records, office locations, Block C3 floor entries and campus map coordinates are stored locally in <b>data.js</b> and cached for offline use.</p>
+      </div>
+    </section>
+
+    <!-- DETAIL SCREEN -->
+    <section class="screen" id="detail">
+      <div class="pagehead">
+        <button class="back-btn" type="button" onclick="goBack()" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <div>
+          <h2 id="detailTitle">Location</h2>
+          <p id="detailSubtitle">Verified campus record</p>
+        </div>
+      </div>
+      <div class="card" id="detailBody"></div>
+    </section>
+  </main>
+
+  <!-- 9. MODERN BOTTOM NAVIGATION -->
+  <nav class="tabs" aria-label="Bottom navigation">
+    <button class="tab active" type="button" data-screen="home" onclick="openScreen('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>
+      <span>Home</span>
+    </button>
+    <button class="tab" type="button" data-screen="teachers" onclick="openScreen('teachers')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      <span>Teachers</span>
+    </button>
+    <button class="tab" type="button" data-screen="offices" onclick="openScreen('offices')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M9 20v-5h6v5"></path><path d="M8 9h.01M12 9h.01M16 9h.01"></path></svg>
+      <span>Offices</span>
+    </button>
+    <button class="tab" type="button" data-screen="saved" onclick="openScreen('saved')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+      <span>Saved</span>
+    </button>
+    <button class="tab" type="button" data-screen="profile" onclick="openScreen('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20a8 8 0 0 1 16 0"></path></svg>
+      <span>Profile</span>
+    </button>
+  </nav>
+
+  <!-- CAMPUS BLOCKS SHEET -->
+  <div class="modal-backdrop" id="buildingsModal" onclick="if(event.target===this)closeBuildingsSheet()">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="buildingsSheetTitle">
+      <div class="sheet-handle"></div>
+      <div class="sheet-head">
+        <h3 id="buildingsSheetTitle">Campus Blocks &amp; Landmarks</h3>
+        <button class="mapinfo-close" type="button" aria-label="Close buildings list" onclick="closeBuildingsSheet()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="sheet-body" id="buildingsSheetBody"></div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN ZOOMABLE MAP VIEWER -->
+  <div class="map-zoom-modal" id="mapZoomModal" role="dialog" aria-modal="true" aria-label="Expanded campus map">
+    <div class="map-zoom-bar">
+      <strong style="font-size:14px">Chandigarh University Campus Map</strong>
+      <div style="display:flex;gap:8px">
+        <button class="topbar-action" type="button" id="zoomToggleBtn" onclick="toggleMapZoom()">Zoom 1.75x</button>
+        <button class="topbar-action" type="button" onclick="closeMapZoom()">Close</button>
+      </div>
+    </div>
+    <div class="map-zoom-viewport">
+      <div class="map-zoom-stage" id="mapZoomStage">
+        <img src="./cu_campus_map.jpg" alt="Original Chandigarh University campus map expanded view">
+        <div class="mapmarkers" id="mapZoomMarkers"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 
-<div class="sectionhead">
-  <h2>Quick access</h2>
-</div>
-
-<div class="grid2">
-
-  <button class="feature" onclick="openScreen('navigation')">
-    <div class="ico">⌖</div>
-    <strong>Campus directions</strong>
-    <small>Find your way around the university</small>
-  </button>
-
-  <button class="feature" onclick="openScreen('c3')">
-    <div class="ico">▤</div>
-    <strong>C3 room finder</strong>
-    <small>Find teachers, rooms and facilities</small>
-  </button>
-
-</div>
- <div class="notice">Routes will only be shown as verified walking directions after campus paths and building positions have been checked. The map image alone cannot calculate a reliable route.</div>
-</section>
-<section class="screen" id="teachers">
- <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>Teachers</h2><p>Find faculty members and cabin details</p></div></div>
- <input class="field" id="teacherSearch" placeholder="Search teacher or department..." oninput="renderTeachers()">
- <div class="filters" id="teacherFilters"><button class="chip active" onclick="setTeacherFilter('All',this)">All</button><button class="chip" onclick="setTeacherFilter('C3',this)">C3</button></div>
- <div id="teacherList"></div>
-</section>
-<section class="screen" id="offices">
- <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>Administrative Offices & Centres</h2><p>Find student services, offices and facilities</p></div></div>
- <input class="field" id="officeSearch" placeholder="Search office or centre..." oninput="renderOffices()">
- <div class="filters"><button class="chip active" onclick="setOfficeFilter('All',this)">All</button><button class="chip" onclick="setOfficeFilter('Office',this)">Offices</button><button class="chip" onclick="setOfficeFilter('Centre',this)">Centres</button><button class="chip" onclick="setOfficeFilter('Facility',this)">Facilities</button></div>
- <div id="officeList"></div>
-</section>
-<section class="screen" id="c3">
- <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>C3 room finder</h2><p>Simple indoor directions · No floor-plan maps</p></div></div>
- <div class="card"><h3>Find a room in C3</h3><input class="field" id="roomSearch" placeholder="Enter room number, e.g. 610" oninput="renderRooms()"><p class="muted" style="margin:9px 0 0">Search verified C3 teacher cabins and the Microsoft Skill Centre. Select View for floor, room and written directions.</p></div>
- <div id="roomList"></div>
-</section>
-<section class="screen" id="navigation">
- <div class="pagehead"><button class="back" onclick="openScreen('home')">‹</button><div><h2>Campus directions</h2><p>Choose where you are going</p></div></div>
- <div class="card stack"><label class="muted">Starting point</label><input class="field" id="fromPlace" placeholder="Where are you starting?"><label class="muted">Destination</label><input class="field" id="toPlace" placeholder="Where do you want to go?"><button class="primary" onclick="planRoute()">Get directions</button><div id="routeResult"></div></div>
- <div class="notice">The current project needs verified campus walking paths or route coordinates before it can draw reliable routes. Until then, CU Nav will not invent turn-by-turn directions.</div>
-</section>
-<section class="screen" id="saved">
- <div class="pagehead"><div><h2>Saved places</h2><p>Your favourite destinations</p></div></div><div id="savedList"></div>
-</section>
-<section class="screen" id="profile">
- <div class="pagehead"><div><h2>Settings & information</h2><p>CU Nav campus guide</p></div></div>
- <div class="card"><h3>About CU Nav</h3><p class="muted">A student-friendly campus directory and navigation app for Chandigarh University.</p><button class="secondary" onclick="installApp()">Install app</button></div>
- <div class="card"><h3>Directory data</h3><p class="muted">Teacher, room, office and centre records are stored in <b>data.js</b>.</p></div>
-</section>
-<section class="screen" id="detail">
- <div class="pagehead"><button class="back" onclick="goBack()">‹</button><div><h2 id="detailTitle">Location</h2><p>Destination information</p></div></div>
- <div class="card" id="detailBody"></div>
-</section>
-</main>
-<nav class="tabs">
- <button class="tab active" data-screen="home" onclick="openScreen('home')"><span>⌂</span>Home</button>
- <button class="tab" data-screen="teachers" onclick="openScreen('teachers')"><span>♙</span>Teachers</button>
- <button class="tab" data-screen="offices" onclick="openScreen('offices')"><span>▦</span>Offices</button>
- <button class="tab" data-screen="saved" onclick="openScreen('saved')"><span>☆</span>Saved</button>
- <button class="tab" data-screen="profile" onclick="openScreen('profile')"><span>☻</span>Profile</button>
-</nav>
-<div class="toast" id="toast"></div>
-</div>
 <script src="data.js"></script>
 <script>
-const DB = window.CUNAV_DATA || {teachers:[],offices:[],rooms:[],buildings:[]};
-let previousScreen='home',teacherFilter='All',officeFilter='All',deferredInstall=null;
-const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-const exactC3=value=>String(value||'').trim().toLowerCase()==='block c3';
+const DB = window.CUNAV_DATA || { teachers: [], offices: [], rooms: [], buildings: [] };
+let previousScreen = 'home';
+let teacherFilter = 'All';
+let officeFilter = 'All';
+let c3FloorFilter = 'All';
+let deferredInstall = null;
+let selectedBuildingIndex = null;
 
-function openScreen(id){
- const current=document.querySelector('.screen.active');
- if(current&&current.id!=='detail')previousScreen=current.id;
- document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id===id));
- document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.dataset.screen===id));
- const input=document.getElementById('globalSearch');if(input)input.value='';
- window.scrollTo({top:0,behavior:'instant'});
- if(id==='teachers')renderTeachers();
- if(id==='offices')renderOffices();
- if(id==='c3')renderRooms();
- if(id==='saved')renderSaved();
+const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+}[ch]));
+
+const exactC3 = value => String(value || '').trim().toLowerCase() === 'block c3';
+
+function initials(name) {
+  const cleaned = String(name || '').replace(/^(dr\.|er\.|ms\.|mr\.|prof\.)\s+/i, '').trim();
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  if (!parts.length) return 'CU';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
-function goBack(){openScreen(previousScreen==='detail'?'home':previousScreen)}
-function showToast(message){
- const el=document.getElementById('toast');el.textContent=message;el.style.display='block';
- clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2300);
+
+function getSavedList() {
+  try {
+    return JSON.parse(localStorage.getItem('cunavSaved') || '[]');
+  } catch (_) {
+    return [];
+  }
 }
-function getPool(type){if(type==='teacher')return DB.teachers||[];if(type==='room')return DB.rooms||[];return DB.offices||[]}
-function itemLocation(item){
- const bits=[];if(item.building)bits.push(item.building);if(item.floor)bits.push('Floor '+item.floor);
- if(item.location&&item.location!=='-')bits.push(item.location);
- const room=item.room||item.roomNumber||item.roomNo;if(room)bits.push('Room '+room);
- if(item.cabin&&item.cabin!=='-')bits.push('Cabin '+item.cabin);
- return bits.join(' · ')||'Location details not verified';
+
+function isSavedPlace(type, index) {
+  return getSavedList().some(x => x.type === type && Number(x.index) === Number(index));
 }
-function locCard(item,type,index){
- const title=item.name||item.title||'Unnamed location';
- const secondary=item.department||item.type||item.category||'';
- return `<article class="card"><div class="row"><div class="avatar">${type==='teacher'?'👨‍🏫':'📍'}</div>
- <div class="grow"><div class="name">${esc(title)}</div><div class="meta">${esc(secondary)}</div><div class="meta">${esc(itemLocation(item))}</div></div>
- <button class="badge" type="button" onclick="showDetail('${type}',${index})">View</button></div></article>`;
+
+function openScreen(id) {
+  const current = document.querySelector('.screen.active');
+  if (current && current.id !== 'detail') previousScreen = current.id;
+  if (current && current.id === 'navigation' && id !== 'navigation') pauseDemoRoute();
+  document.querySelectorAll('.screen').forEach(el => el.classList.toggle('active', el.id === id));
+  document.querySelectorAll('.tab, .desktop-nav-btn').forEach(el => el.classList.toggle('active', el.dataset.screen === id));
+  closeGlobalSearchDropdown();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (id === 'teachers') renderTeachers();
+  if (id === 'offices') renderOffices();
+  if (id === 'c3') renderRooms();
+  if (id === 'saved') renderSaved();
+  if (id === 'navigation') initNavigationDemo();
+  if (id === 'profile') renderProfileStats();
 }
-function renderTeachers(){
- const q=(document.getElementById('teacherSearch')?.value||'').trim().toLowerCase();
- const all=DB.teachers||[];
- const matches=all.map((item,index)=>({item,index})).filter(({item})=>(teacherFilter==='All'||exactC3(item.building))&&JSON.stringify(item).toLowerCase().includes(q));
- document.getElementById('teacherList').innerHTML=matches.length?matches.map(({item,index})=>locCard(item,'teacher',index)).join(''):'<div class="empty">No matching teacher found.</div>';
+
+function goBack() {
+  openScreen(previousScreen === 'detail' ? 'home' : previousScreen);
 }
-function officeKind(item){
- const name=String(item.name||'').toLowerCase(),type=String(item.type||item.category||'').toLowerCase();
- if(name.includes('library')||type.includes('facility'))return 'Facility';
- if(name.includes('centre')||name.includes('center')||name.includes('counselling')||type.includes('centre')||type.includes('center')||type.includes('research'))return 'Centre';
- return 'Office';
+
+function showToast(message) {
+  const el = document.getElementById('toast');
+  el.textContent = message;
+  el.style.display = 'block';
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => { el.style.display = 'none'; }, 2400);
 }
-function renderOffices(){
- const q=(document.getElementById('officeSearch')?.value||'').trim().toLowerCase(),all=DB.offices||[];
- const matches=all.map((item,index)=>({item,index})).filter(({item})=>(officeFilter==='All'||officeKind(item)===officeFilter)&&JSON.stringify(item).toLowerCase().includes(q));
- document.getElementById('officeList').innerHTML=matches.length?matches.map(({item,index})=>locCard(item,'office',index)).join(''):'<div class="empty">No matching office, centre or facility found.</div>';
+
+function getPool(type) {
+  if (type === 'teacher') return DB.teachers || [];
+  if (type === 'room') return DB.rooms || [];
+  return DB.offices || [];
 }
-function c3Entries(){
- const entries=[];
- (DB.teachers||[]).forEach((item,index)=>{if(exactC3(item.building))entries.push({item,type:'teacher',index})});
- (DB.rooms||[]).forEach((item,index)=>{if(exactC3(item.building||'Block C3'))entries.push({item,type:'room',index})});
- (DB.offices||[]).forEach((item,index)=>{if(exactC3(item.building))entries.push({item,type:'office',index})});
- return entries;
+
+function itemLocation(item) {
+  const bits = [];
+  if (item.building) bits.push(String(item.building).trim());
+  if (item.floor) bits.push('Floor ' + item.floor);
+  if (item.location && item.location !== '-') bits.push(String(item.location).trim());
+  const room = item.room || item.roomNumber || item.roomNo;
+  if (room) bits.push('Room ' + room);
+  if (item.cabin && item.cabin !== '-') bits.push('Cabin ' + item.cabin);
+  return bits.join(' · ') || 'Location details not verified';
 }
-function renderRooms(){
- const q=(document.getElementById('roomSearch')?.value||'').trim().toLowerCase();
- const matches=c3Entries().filter(({item})=>JSON.stringify(item).toLowerCase().includes(q));
- document.getElementById('roomList').innerHTML=matches.length?matches.map(({item,type,index})=>locCard(item,type,index)).join(''):'<div class="empty">No matching C3 room or facility found.</div>';
+
+function chevronSvg() {
+  return '<span class="item-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>';
 }
-function setTeacherFilter(value,button){
- teacherFilter=value;document.querySelectorAll('#teacherFilters .chip').forEach(el=>el.classList.remove('active'));button.classList.add('active');renderTeachers();
+
+function officeKind(item) {
+  const name = String(item.name || '').toLowerCase();
+  const type = String(item.type || item.category || '').toLowerCase();
+  if (name.includes('library') || type.includes('facility')) return 'Facility';
+  if (name.includes('centre') || name.includes('center') || name.includes('counselling') || type.includes('centre') || type.includes('center') || type.includes('research')) return 'Centre';
+  return 'Office';
 }
-function setOfficeFilter(value,button){
- officeFilter=value;button.parentElement.querySelectorAll('.chip').forEach(el=>el.classList.remove('active'));button.classList.add('active');renderOffices();
+
+function officeIconSvg(kind) {
+  if (kind === 'Centre') {
+    return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>';
+  }
+  if (kind === 'Facility') {
+    return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>';
+  }
+  return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M9 20v-5h6v5"></path><path d="M8 9h.01M12 9h.01M16 9h.01"></path></svg>';
 }
-function showDetail(type,index){
- const pool=getPool(type),item=pool[Number(index)];
- if(!item){showToast('Sorry, this directory record could not be opened.');return}
- const title=item.name||item.title||'Location',building=item.building||'Not verified';
- const floorValue=item.floor?'Floor '+item.floor:'Not listed';
- const roomValue=item.room||item.roomNumber||item.roomNo||'Not listed';
- const cabinValue=item.cabin&&item.cabin!=='-'?item.cabin:'Not listed';
- const locationValue=item.location&&item.location!=='-'?item.location:'Not listed';
- const category=item.department||item.type||item.category||'Campus location';
- let directions='<p class="muted" style="margin-top:12px">A verified campus walking route is not available for this location yet.</p>';
- if(exactC3(building)){
-  const steps=['Enter Block C3.'];
-  if(item.floor)steps.push('Go to Floor '+esc(item.floor)+'.');
-  else if(locationValue!=='Not listed')steps.push('Go to '+esc(locationValue)+'.');
-  if(roomValue!=='Not listed')steps.push('Find room '+esc(roomValue)+'.');
-  if(cabinValue!=='Not listed')steps.push('Find cabin '+esc(cabinValue)+'.');
-  if(title==='Microsoft Skill Centre')steps.push('The Microsoft Skill Centre is on Level 1.');
-  directions='<ol class="steps">'+steps.map(step=>'<li>'+step+'</li>').join('')+'</ol>';
- }
- document.getElementById('detailTitle').textContent=title;
- document.getElementById('detailBody').innerHTML=`<div class="row"><div class="avatar">${type==='teacher'?'👨‍🏫':'📍'}</div><div><div class="name">${esc(title)}</div><div class="meta">${esc(category)}</div></div></div>
- <div class="detailgrid"><span>Building</span><b>${esc(building)}</b></div>
- <div class="detailgrid"><span>Floor</span><b>${esc(floorValue)}</b></div>
- <div class="detailgrid"><span>Location</span><b>${esc(locationValue)}</b></div>
- <div class="detailgrid"><span>Room</span><b>${esc(roomValue)}</b></div>
- <div class="detailgrid"><span>Cabin</span><b>${esc(cabinValue)}</b></div>
- <div class="detailgrid"><span>Details</span><b>${esc(item.details||'No additional verified details')}</b></div>
- ${item.hours&&item.hours!=='-'?`<div class="detailgrid"><span>Hours</span><b>${esc(item.hours)}</b></div>`:''}
- <h3 style="margin-top:16px">Directions</h3>${directions}<button class="secondary" type="button" id="saveDetailButton">☆ Save location</button>`;
- document.getElementById('saveDetailButton').addEventListener('click',()=>savePlace(type,Number(index),title));
- openScreen('detail');
+
+function locCard(item, type, index) {
+  const title = item.name || item.title || 'Unnamed location';
+  const kind = type === 'teacher' ? (item.department || 'Faculty') : officeKind(item);
+  const sub = type === 'teacher' && item.ecode && item.ecode !== '-'
+    ? `${kind} · ${item.ecode}`
+    : (item.details && type !== 'teacher' ? `${kind} · ${item.details}` : kind);
+  const avatarCls = type === 'teacher'
+    ? 'avatar'
+    : (kind === 'Centre' ? 'avatar kind-centre' : (kind === 'Facility' ? 'avatar kind-facility' : 'avatar'));
+  const avatarInner = type === 'teacher' ? esc(initials(title)) : officeIconSvg(kind);
+
+  return `<button class="item-card" type="button" onclick="showDetail('${type}',${index})">
+    <div class="${avatarCls}">${avatarInner}</div>
+    <div class="grow">
+      <div class="item-name">${esc(title)}</div>
+      <div class="item-sub">${esc(sub)}</div>
+      <div class="item-loc">${esc(itemLocation(item))}</div>
+    </div>
+    ${chevronSvg()}
+  </button>`;
 }
-function savePlace(type,index,name){
- let saved=[];try{saved=JSON.parse(localStorage.getItem('cunavSaved')||'[]')}catch(_){}
- if(!saved.some(x=>x.type===type&&x.index===index)){saved.push({type,index,name});localStorage.setItem('cunavSaved',JSON.stringify(saved))}
- showToast('Location saved');
+
+function renderTeachers() {
+  const q = (document.getElementById('teacherSearch')?.value || '').trim().toLowerCase();
+  const all = DB.teachers || [];
+  const matches = all.map((item, index) => ({ item, index })).filter(({ item }) => {
+    let filterOk = true;
+    if (teacherFilter === 'C3') filterOk = exactC3(item.building);
+    else if (teacherFilter === '610') filterOk = String(item.room || '') === '610';
+    else if (teacherFilter === '603') filterOk = String(item.room || '') === '603';
+    else if (teacherFilter === 'Floor7') filterOk = Number(item.floor) === 7;
+    return filterOk && JSON.stringify(item).toLowerCase().includes(q);
+  });
+  const countEl = document.getElementById('teacherCount');
+  if (countEl) countEl.textContent = `${matches.length} ${matches.length === 1 ? 'faculty member' : 'faculty members'} found`;
+  document.getElementById('teacherList').innerHTML = matches.length
+    ? matches.map(({ item, index }) => locCard(item, 'teacher', index)).join('')
+    : '<div class="empty">No matching teacher found.</div>';
 }
-function renderSaved(){
- let saved=[];try{saved=JSON.parse(localStorage.getItem('cunavSaved')||'[]')}catch(_){}
- const list=document.getElementById('savedList');
- list.innerHTML=saved.length?saved.map((item,index)=>`<div class="card row"><div class="grow"><b class="name">${esc(item.name)}</b><div class="meta">${esc(item.type)}</div></div><button class="badge" type="button" onclick="showDetail('${esc(item.type)}',${Number(item.index)})">View</button><button class="secondary" type="button" onclick="removeSaved(${index})">Remove</button></div>`).join(''):'<div class="empty">No saved locations yet.</div>';
+
+function renderOffices() {
+  const q = (document.getElementById('officeSearch')?.value || '').trim().toLowerCase();
+  const all = DB.offices || [];
+  const matches = all.map((item, index) => ({ item, index })).filter(({ item }) => {
+    const filterOk = officeFilter === 'All' || officeKind(item) === officeFilter;
+    return filterOk && JSON.stringify(item).toLowerCase().includes(q);
+  });
+  const countEl = document.getElementById('officeCount');
+  if (countEl) countEl.textContent = `${matches.length} ${matches.length === 1 ? 'location' : 'locations'} listed`;
+  document.getElementById('officeList').innerHTML = matches.length
+    ? matches.map(({ item, index }) => locCard(item, 'office', index)).join('')
+    : '<div class="empty">No matching office, centre or facility found.</div>';
 }
-function removeSaved(index){
- let saved=[];try{saved=JSON.parse(localStorage.getItem('cunavSaved')||'[]')}catch(_){}
- saved.splice(Number(index),1);localStorage.setItem('cunavSaved',JSON.stringify(saved));renderSaved();
+
+function c3Entries() {
+  const entries = [];
+  (DB.teachers || []).forEach((item, index) => { if (exactC3(item.building)) entries.push({ item, type: 'teacher', index }); });
+  (DB.rooms || []).forEach((item, index) => { if (exactC3(item.building || 'Block C3')) entries.push({ item, type: 'room', index }); });
+  (DB.offices || []).forEach((item, index) => { if (exactC3(item.building)) entries.push({ item, type: 'office', index }); });
+  return entries;
 }
-function globalSearch(value){
- const q=String(value||'').trim().toLowerCase();if(!q)return;
- const ti=(DB.teachers||[]).findIndex(x=>JSON.stringify(x).toLowerCase().includes(q));
- if(ti>=0){openScreen('teachers');document.getElementById('teacherSearch').value=value;renderTeachers();return}
- const oi=(DB.offices||[]).findIndex(x=>JSON.stringify(x).toLowerCase().includes(q));
- if(oi>=0){openScreen('offices');document.getElementById('officeSearch').value=value;renderOffices();return}
- if(q.includes('c3')||q.includes('room')){openScreen('c3');document.getElementById('roomSearch').value=value;renderRooms();return}
- showToast('No matching location found. Try a teacher, office or centre name.');
+
+function matchesC3Floor(item, floorFilter) {
+  if (floorFilter === 'All') return true;
+  if (floorFilter === 'Ground') return String(item.floor || '').toLowerCase() === 'ground' || Number(item.floor) === 0;
+  return String(item.floor || '') === String(floorFilter);
 }
-function planRoute(){
- const from=document.getElementById('fromPlace').value.trim(),to=document.getElementById('toPlace').value.trim(),box=document.getElementById('routeResult');
- if(!from||!to){box.innerHTML='<p class="muted">Enter both a starting point and destination.</p>';return}
- box.innerHTML=`<div class="notice">Route request: <b>${esc(from)}</b> → <b>${esc(to)}</b>. Turn-by-turn campus directions will be enabled after verified walking paths are added.</div>`;
+
+function renderRooms() {
+  const q = (document.getElementById('roomSearch')?.value || '').trim().toLowerCase();
+  const matches = c3Entries().filter(({ item }) =>
+    matchesC3Floor(item, c3FloorFilter) && JSON.stringify(item).toLowerCase().includes(q)
+  );
+  const countEl = document.getElementById('roomCount');
+  if (countEl) {
+    const floorLabel = c3FloorFilter === 'All' ? 'across all floors' : (c3FloorFilter === 'Ground' ? 'on Ground Floor' : `on Floor ${c3FloorFilter}`);
+    countEl.textContent = `${matches.length} verified ${matches.length === 1 ? 'entry' : 'entries'} ${floorLabel}`;
+  }
+  document.getElementById('roomList').innerHTML = matches.length
+    ? matches.map(({ item, type, index }) => locCard(item, type, index)).join('')
+    : `<div class="empty">No verified Block C3 rooms or facilities are listed${c3FloorFilter !== 'All' ? ` for ${c3FloorFilter === 'Ground' ? 'Ground Floor' : 'Floor ' + c3FloorFilter}` : ''}${q ? ` matching "${esc(q)}"` : ''}.</div>`;
 }
-function installApp(){
- if(deferredInstall){deferredInstall.prompt();deferredInstall=null}
- else showToast('On Android Chrome, open the ⋮ menu and choose Install app / Add to Home screen.');
+
+function setTeacherFilter(value, button) {
+  teacherFilter = value;
+  document.querySelectorAll('#teacherFilters .chip').forEach(el => el.classList.remove('active'));
+  button.classList.add('active');
+  renderTeachers();
 }
-window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event});
-function loadMap(){
- const frame=document.getElementById('mapFrame');if(!frame)return;
- const image=new Image();image.alt='Original Chandigarh University campus map';
- image.onload=()=>{frame.innerHTML='';frame.appendChild(image);image.style.width='100%';image.style.height='auto';image.style.display='block'};
- image.onerror=()=>{frame.innerHTML='<div class="mapmissing">Campus map image not found.<br>Make sure <b>cu_campus_map.jpg</b> is uploaded beside <b>index.html</b> in the GitHub repository.</div>'};
- image.src='./cu_campus_map.jpg';
+
+function setOfficeFilter(value, button) {
+  officeFilter = value;
+  document.querySelectorAll('#officeFilters .chip').forEach(el => el.classList.remove('active'));
+  button.classList.add('active');
+  renderOffices();
 }
+
+function setC3Floor(value, button) {
+  c3FloorFilter = value;
+  document.querySelectorAll('#c3FloorBar .floor-btn').forEach(el => el.classList.remove('active'));
+  button.classList.add('active');
+  renderRooms();
+}
+
+function findBuildingIndexForItem(item) {
+  const raw = String(item.building || item.name || '').toLowerCase();
+  const buildings = DB.buildings || [];
+  for (let i = 0; i < buildings.length; i++) {
+    const b = buildings[i];
+    const code = String(b.code || '').toLowerCase();
+    const name = String(b.name || '').toLowerCase();
+    if (name && raw.includes(name)) return i;
+    if (code) {
+      const re = new RegExp('(^|[^a-z0-9])' + code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^a-z0-9]|$)', 'i');
+      if (re.test(raw)) return i;
+    }
+  }
+  return -1;
+}
+
+function locateOnCampusMap(buildingIndex) {
+  if (buildingIndex < 0) return;
+  selectedBuildingIndex = buildingIndex;
+  openScreen('home');
+  populateMapMarkers();
+  const frame = document.getElementById('mapFrame');
+  if (frame) frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function showDetail(type, index) {
+  const pool = getPool(type);
+  const item = pool[Number(index)];
+  if (!item) {
+    showToast('Sorry, this directory record could not be opened.');
+    return;
+  }
+  const title = item.name || item.title || 'Location';
+  const building = item.building ? String(item.building).trim() : 'Not verified';
+  const floorValue = item.floor ? 'Floor ' + item.floor : 'Not listed';
+  const roomValue = item.room || item.roomNumber || item.roomNo || 'Not listed';
+  const cabinValue = item.cabin && item.cabin !== '-' ? item.cabin : 'Not listed';
+  const locationValue = item.location && item.location !== '-' ? String(item.location).trim() : 'Not listed';
+  const category = item.department || (type === 'teacher' ? 'Faculty' : officeKind(item));
+
+  let directions = '<p class="section-sub" style="margin-top:8px">A verified indoor or walking route is not listed for this location yet. Check the campus map for its building position.</p>';
+  if (exactC3(building)) {
+    const steps = ['Enter Block C3.'];
+    if (item.floor) steps.push('Take the stairs or lift to Floor ' + esc(item.floor) + '.');
+    else if (locationValue !== 'Not listed') steps.push('Proceed to ' + esc(locationValue) + '.');
+    if (roomValue !== 'Not listed') steps.push('Locate Room ' + esc(roomValue) + '.');
+    if (cabinValue !== 'Not listed') steps.push('Find Cabin ' + esc(cabinValue) + '.');
+    if (title === 'Microsoft Skill Centre') steps.push('The Microsoft Skill Centre is located on Level 1.');
+    if (title === 'Library') steps.push('The University C3 Library is located on Level 2.');
+    directions = '<ol class="steps">' + steps.map(step => '<li>' + step + '</li>').join('') + '</ol>';
+  }
+
+  const buildingIdx = findBuildingIndexForItem(item);
+  const saved = isSavedPlace(type, index);
+
+  document.getElementById('detailTitle').textContent = title;
+  document.getElementById('detailSubtitle').textContent = category;
+  document.getElementById('detailBody').innerHTML = `
+    <div class="detail-header">
+      <div class="avatar ${type !== 'teacher' && category === 'Centre' ? 'kind-centre' : ''}">${type === 'teacher' ? esc(initials(title)) : officeIconSvg(category)}</div>
+      <div class="grow">
+        <div class="item-name" style="font-size:16px">${esc(title)}</div>
+        <div class="item-sub" style="margin:0">${esc(category)}</div>
+      </div>
+    </div>
+    <div class="detail-grid"><span class="detail-label">Building</span><b class="detail-value">${esc(building)}</b></div>
+    <div class="detail-grid"><span class="detail-label">Floor</span><b class="detail-value">${esc(floorValue)}</b></div>
+    <div class="detail-grid"><span class="detail-label">Location</span><b class="detail-value">${esc(locationValue)}</b></div>
+    <div class="detail-grid"><span class="detail-label">Room</span><b class="detail-value">${esc(roomValue)}</b></div>
+    <div class="detail-grid"><span class="detail-label">Cabin</span><b class="detail-value">${esc(cabinValue)}</b></div>
+    ${item.ecode && item.ecode !== '-' ? `<div class="detail-grid"><span class="detail-label">Emp. Code</span><b class="detail-value">${esc(item.ecode)}</b></div>` : ''}
+    ${item.headOfDepartment ? `<div class="detail-grid"><span class="detail-label">HOD</span><b class="detail-value">${esc(item.headOfDepartment)}</b></div>` : ''}
+    <div class="detail-grid"><span class="detail-label">Details</span><b class="detail-value">${esc(item.details || 'Verified CU directory record')}</b></div>
+    ${item.hours && item.hours !== '-' ? `<div class="detail-grid"><span class="detail-label">Hours</span><b class="detail-value">${esc(item.hours)}</b></div>` : ''}
+    <h3 style="margin:16px 0 4px;font-size:14px;color:var(--navy)">Directions</h3>
+    ${directions}
+    <div class="detail-actions">
+      <button class="secondary ${saved ? 'saved' : ''}" type="button" id="saveDetailButton">
+        ${saved ? 'Saved to Places' : 'Save Location'}
+      </button>
+      ${buildingIdx >= 0 ? `<button class="secondary" type="button" onclick="locateOnCampusMap(${buildingIdx})">Show on Map</button>` : ''}
+      ${buildingIdx >= 0 ? `<button class="primary" type="button" onclick="openDemoRouteTo(${buildingIdx}, '${type === 'office' ? 'o:' + Number(index) : 'b:' + buildingIdx}')">Demo Route Here</button>` : ''}
+    </div>`;
+  document.getElementById('saveDetailButton').addEventListener('click', () => toggleSavePlace(type, Number(index), title));
+  openScreen('detail');
+}
+
+function savePlace(type, index, name) {
+  const saved = getSavedList();
+  if (!saved.some(x => x.type === type && Number(x.index) === Number(index))) {
+    saved.push({ type, index: Number(index), name });
+    localStorage.setItem('cunavSaved', JSON.stringify(saved));
+  }
+  showToast('Location saved');
+}
+
+function toggleSavePlace(type, index, name) {
+  const saved = getSavedList();
+  const existingIdx = saved.findIndex(x => x.type === type && Number(x.index) === Number(index));
+  const btn = document.getElementById('saveDetailButton');
+  if (existingIdx >= 0) {
+    saved.splice(existingIdx, 1);
+    localStorage.setItem('cunavSaved', JSON.stringify(saved));
+    if (btn) {
+      btn.classList.remove('saved');
+      btn.textContent = 'Save Location';
+    }
+    showToast('Removed from saved places');
+  } else {
+    saved.push({ type, index: Number(index), name });
+    localStorage.setItem('cunavSaved', JSON.stringify(saved));
+    if (btn) {
+      btn.classList.add('saved');
+      btn.textContent = 'Saved to Places';
+    }
+    showToast('Location saved');
+  }
+}
+
+function renderSaved() {
+  const saved = getSavedList();
+  const list = document.getElementById('savedList');
+  list.innerHTML = saved.length
+    ? saved.map((item, index) => `
+      <div class="saved-row">
+        <div class="grow">
+          <div class="item-name">${esc(item.name)}</div>
+          <div class="item-loc">${esc(item.type === 'teacher' ? 'Faculty record' : 'Campus office / facility')}</div>
+        </div>
+        <div class="saved-actions">
+          <button class="secondary" type="button" onclick="showDetail('${esc(item.type)}',${Number(item.index)})">View</button>
+          <button class="secondary" type="button" onclick="removeSaved(${index})">Remove</button>
+        </div>
+      </div>`).join('')
+    : '<div class="empty">No saved locations yet. Open any teacher, office or C3 room and tap Save Location.</div>';
+}
+
+function removeSaved(index) {
+  const saved = getSavedList();
+  saved.splice(Number(index), 1);
+  localStorage.setItem('cunavSaved', JSON.stringify(saved));
+  renderSaved();
+  showToast('Removed from saved');
+}
+
+/* Global Live Search */
+function closeGlobalSearchDropdown() {
+  const box = document.getElementById('globalSearchResults');
+  if (box) box.classList.remove('open');
+}
+
+function clearGlobalSearch() {
+  const input = document.getElementById('globalSearch');
+  const clearBtn = document.getElementById('globalSearchClear');
+  if (input) {
+    input.value = '';
+    input.focus();
+  }
+  if (clearBtn) clearBtn.classList.remove('visible');
+  closeGlobalSearchDropdown();
+}
+
+function handleGlobalInput(value) {
+  const clearBtn = document.getElementById('globalSearchClear');
+  if (clearBtn) clearBtn.classList.toggle('visible', Boolean(value && value.trim()));
+  const q = String(value || '').trim().toLowerCase();
+  const box = document.getElementById('globalSearchResults');
+  if (!box) return;
+  if (!q) {
+    box.classList.remove('open');
+    box.innerHTML = '';
+    return;
+  }
+
+  const hits = [];
+  (DB.buildings || []).forEach((b, index) => {
+    if (JSON.stringify(b).toLowerCase().includes(q)) {
+      hits.push({ group: 'Campus Buildings', title: b.name, sub: b.description || b.category, kind: b.code || 'Building', action: () => locateOnCampusMap(index) });
+    }
+  });
+  (DB.offices || []).forEach((o, index) => {
+    if (JSON.stringify(o).toLowerCase().includes(q)) {
+      hits.push({ group: 'Offices & Centres', title: o.name, sub: itemLocation(o), kind: officeKind(o), action: () => showDetail('office', index) });
+    }
+  });
+  (DB.teachers || []).forEach((t, index) => {
+    if (JSON.stringify(t).toLowerCase().includes(q)) {
+      hits.push({ group: 'Teachers', title: t.name, sub: `${t.department} · Room ${t.room} · Cabin ${t.cabin}`, kind: 'Faculty', action: () => showDetail('teacher', index) });
+    }
+  });
+
+  window._searchHits = hits.slice(0, 12);
+  if (!window._searchHits.length) {
+    box.innerHTML = '<div class="search-hit"><div class="search-hit-main"><div class="search-hit-title">No matching campus records</div><div class="search-hit-sub">Try a teacher name, room (610, 603, 711), office or building</div></div></div>';
+    box.classList.add('open');
+    return;
+  }
+
+  let lastGroup = '';
+  box.innerHTML = window._searchHits.map((h, i) => {
+    const header = h.group !== lastGroup ? `<div class="search-group-label">${esc(h.group)}</div>` : '';
+    lastGroup = h.group;
+    return `${header}<button class="search-hit" type="button" onclick="window._searchHits[${i}].action()">
+      <div class="search-hit-main">
+        <div class="search-hit-title">${esc(h.title)}</div>
+        <div class="search-hit-sub">${esc(h.sub)}</div>
+      </div>
+      <span class="search-hit-kind">${esc(h.kind)}</span>
+    </button>`;
+  }).join('');
+  box.classList.add('open');
+}
+
+document.addEventListener('click', event => {
+  const wrap = document.getElementById('globalSearchWrap');
+  if (wrap && !wrap.contains(event.target)) closeGlobalSearchDropdown();
+});
+
+function globalSearch(value) {
+  const q = String(value || '').trim().toLowerCase();
+  if (!q) return;
+  closeGlobalSearchDropdown();
+  const ti = (DB.teachers || []).findIndex(x => JSON.stringify(x).toLowerCase().includes(q));
+  if (ti >= 0) {
+    openScreen('teachers');
+    document.getElementById('teacherSearch').value = value;
+    renderTeachers();
+    return;
+  }
+  const oi = (DB.offices || []).findIndex(x => JSON.stringify(x).toLowerCase().includes(q));
+  if (oi >= 0) {
+    openScreen('offices');
+    document.getElementById('officeSearch').value = value;
+    renderOffices();
+    return;
+  }
+  const bi = (DB.buildings || []).findIndex(x => JSON.stringify(x).toLowerCase().includes(q));
+  if (bi >= 0) {
+    locateOnCampusMap(bi);
+    return;
+  }
+  if (q.includes('c3') || q.includes('room')) {
+    openScreen('c3');
+    document.getElementById('roomSearch').value = value;
+    renderRooms();
+    return;
+  }
+  showToast('No matching location found. Try a teacher, office or building name.');
+}
+
+/* Campus Movement Demonstration (Unified 0%-100% Image Overlay + Editable Pathways) */
+const MAP_W = 1312;
+const MAP_H = 1199;
+let navViewportEl = null;
+let navCanvasEl = null;
+let navGesturesReady = false;
+let navView = { scale: 0.3, tx: 0, ty: 0, minScale: 0.2, maxScale: 2.5 };
+const navPointers = new Map();
+let navPinchState = null;
+
+let demoWaypointsPct = [];
+let demoWaypointsPx = [];
+let demoCumDist = [];
+let demoTotalDist = 0;
+let demoProgress = 0;
+let demoPlaying = false;
+let demoSpeed = 1;
+let demoRafId = null;
+let demoLastTs = 0;
+let demoStartIdx = -1;
+let demoEndIdx = -1;
+let demoSinglePct = null;
+
+/* Editable illustrative junction nodes aligned to drawn campus roads on cu_campus_map.jpg */
+const DEMO_NODES = {
+  r_g2_top: [40.5, 16],
+  r_g2_b1: [40.5, 29.5],
+  r_b1_side: [37.8, 28.5],
+  r_b2_side: [37.8, 40],
+  r_mid_n: [42.5, 29.5],
+  r_a1_mid: [58.5, 21.2],
+  r_a1_turn: [58.5, 29.5],
+  r_roundabout: [75.5, 21.2],
+  r_east_mid: [70.8, 34],
+  r_ave_b4: [13, 50.7],
+  r_ave_dsw: [24.8, 50.7],
+  r_ave_b3: [36, 50.7],
+  r_ave_hub: [42.5, 50.7],
+  r_ave_fp: [57, 50.7],
+  r_ave_east: [70.8, 50.7],
+  r_mg_ne: [42.5, 61.5],
+  r_mg_top_e: [40.3, 62.5],
+  r_mg_top_w: [17.5, 62.5],
+  r_mg_nw: [16, 63.8],
+  r_c3_road: [16, 68.2],
+  r_mg_sw: [16, 89],
+  r_mg_se: [40.3, 89],
+  r_c1_road: [40.3, 69.5],
+  r_c2_road: [40.3, 81.5]
+};
+
+const DEMO_EDGES = [
+  ['r_g2_top', 'r_g2_b1'],
+  ['r_g2_b1', 'r_b1_side'],
+  ['r_b1_side', 'r_b2_side'],
+  ['r_b2_side', 'r_ave_b3'],
+  ['r_g2_b1', 'r_mid_n'],
+  ['r_mid_n', 'r_ave_hub'],
+  ['r_mid_n', 'r_a1_turn'],
+  ['r_a1_turn', 'r_a1_mid'],
+  ['r_a1_mid', 'r_roundabout'],
+  ['r_roundabout', 'r_east_mid'],
+  ['r_east_mid', 'r_ave_east'],
+  ['r_ave_b4', 'r_ave_dsw'],
+  ['r_ave_dsw', 'r_ave_b3'],
+  ['r_ave_b3', 'r_ave_hub'],
+  ['r_ave_hub', 'r_ave_fp'],
+  ['r_ave_fp', 'r_ave_east'],
+  ['r_ave_hub', 'r_mg_ne'],
+  ['r_mg_ne', 'r_mg_top_e'],
+  ['r_mg_top_e', 'r_mg_top_w'],
+  ['r_mg_top_w', 'r_mg_nw'],
+  ['r_mg_nw', 'r_c3_road'],
+  ['r_c3_road', 'r_mg_sw'],
+  ['r_mg_sw', 'r_mg_se'],
+  ['r_mg_se', 'r_c2_road'],
+  ['r_c2_road', 'r_c1_road'],
+  ['r_c1_road', 'r_mg_top_e']
+];
+
+const BUILDING_NODE_MAP = {
+  'block-c3': 'r_c3_road',
+  'block-b1': 'r_b1_side',
+  'block-b2': 'r_b2_side',
+  'block-b4': 'r_ave_b4',
+  'dsw': 'r_ave_dsw',
+  'block-b3': 'r_ave_b3',
+  'block-a1': 'r_a1_mid',
+  'block-c1': 'r_c1_road',
+  'block-c2': 'r_c2_road',
+  'fountain-park': 'r_ave_fp',
+  'main-ground': 'r_mg_top_e',
+  'gate-2': 'r_g2_top'
+};
+
+function clampPct(value) {
+  return Math.max(1.5, Math.min(98.5, Number(value) || 0));
+}
+
+function pctToSvg(xPct, yPct) {
+  return [(clampPct(xPct) / 100) * MAP_W, (clampPct(yPct) / 100) * MAP_H];
+}
+
+function getNavPlaces() {
+  const buildings = DB.buildings || [];
+  const buildingOpts = buildings.map((b, i) => ({
+    value: `b:${i}`,
+    label: `${b.name}${b.code ? ' (' + b.code + ')' : ''}`,
+    shortName: b.name,
+    buildingIdx: i,
+    building: b,
+    floor: null,
+    location: b.category || 'Campus Building',
+    kind: 'building'
+  }));
+  const officeOpts = [];
+  (DB.offices || []).forEach((o, i) => {
+    const bIdx = findBuildingIndexForItem(o);
+    if (bIdx < 0 || !buildings[bIdx]) return;
+    const b = buildings[bIdx];
+    const levelLabel = o.floor ? `Level ${o.floor}` : (o.location || '');
+    const meta = [b.code || b.name, levelLabel].filter(Boolean).join(' · ');
+    officeOpts.push({
+      value: `o:${i}`,
+      label: `${o.name}${meta ? ' (' + meta + ')' : ''}`,
+      shortName: o.name,
+      buildingIdx: bIdx,
+      building: b,
+      floor: o.floor || null,
+      location: o.location || '',
+      kind: 'office'
+    });
+  });
+  return { buildingOpts, officeOpts, all: [...buildingOpts, ...officeOpts] };
+}
+
+function resolveNavPlace(value) {
+  const { all } = getNavPlaces();
+  return all.find(p => p.value === String(value || '')) || null;
+}
+
+function shortestDemoPath(startBuilding, endBuilding) {
+  const startNode = BUILDING_NODE_MAP[startBuilding.id];
+  const endNode = BUILDING_NODE_MAP[endBuilding.id];
+  const startPt = [clampPct(startBuilding.x), clampPct(startBuilding.y)];
+  const endPt = [clampPct(endBuilding.x), clampPct(endBuilding.y)];
+  if (!startNode || !endNode) return [startPt, endPt];
+
+  const adj = {};
+  Object.keys(DEMO_NODES).forEach(k => { adj[k] = []; });
+  DEMO_EDGES.forEach(([a, b]) => {
+    const [ax, ay] = DEMO_NODES[a];
+    const [bx, by] = DEMO_NODES[b];
+    const w = Math.hypot(bx - ax, by - ay);
+    adj[a].push({ node: b, w });
+    adj[b].push({ node: a, w });
+  });
+
+  const dist = {};
+  const prev = {};
+  const unvisited = new Set(Object.keys(DEMO_NODES));
+  unvisited.forEach(k => { dist[k] = Infinity; });
+  dist[startNode] = 0;
+
+  while (unvisited.size) {
+    let u = null;
+    let best = Infinity;
+    unvisited.forEach(k => {
+      if (dist[k] < best) { best = dist[k]; u = k; }
+    });
+    if (!u || u === endNode || best === Infinity) break;
+    unvisited.delete(u);
+    adj[u].forEach(({ node, w }) => {
+      if (!unvisited.has(node)) return;
+      const alt = dist[u] + w;
+      if (alt < dist[node]) { dist[node] = alt; prev[node] = u; }
+    });
+  }
+
+  const chain = [];
+  let cur = endNode;
+  while (cur) {
+    chain.unshift([clampPct(DEMO_NODES[cur][0]), clampPct(DEMO_NODES[cur][1])]);
+    if (cur === startNode) break;
+    cur = prev[cur];
+  }
+  if (!chain.length) return [startPt, endPt];
+  const rawPts = [startPt, ...chain, endPt];
+  return rawPts.filter((pt, idx) => idx === 0 || pt[0] !== rawPts[idx - 1][0] || pt[1] !== rawPts[idx - 1][1]);
+}
+
+function initNavigationSelects() {
+  const fromSel = document.getElementById('fromPlace');
+  const toSel = document.getElementById('toPlace');
+  if (!fromSel || !toSel) return;
+  const { buildingOpts, officeOpts } = getNavPlaces();
+  if (!fromSel.options.length) {
+    const optionsHtml = `
+      <optgroup label="Campus Buildings">
+        ${buildingOpts.map(p => `<option value="${esc(p.value)}">${esc(p.label)}</option>`).join('')}
+      </optgroup>
+      <optgroup label="Verified Offices, Centres &amp; Facilities">
+        ${officeOpts.map(p => `<option value="${esc(p.value)}">${esc(p.label)}</option>`).join('')}
+      </optgroup>`;
+    fromSel.innerHTML = optionsHtml;
+    toSel.innerHTML = optionsHtml;
+
+    const libOpt = officeOpts.find(p => p.shortName.toLowerCase() === 'library');
+    const b4Opt = buildingOpts.find(p => p.building.id === 'block-b4');
+    fromSel.value = libOpt ? libOpt.value : (buildingOpts[0]?.value || '');
+    toSel.value = b4Opt ? b4Opt.value : (buildingOpts[1]?.value || buildingOpts[0]?.value || '');
+  }
+}
+
+function viewportMetrics() {
+  if (!navViewportEl) return { vw: 360, vh: 380, fitAllScale: 0.26 };
+  const vw = Math.max(240, navViewportEl.clientWidth || 360);
+  const vh = Math.max(220, navViewportEl.clientHeight || 380);
+  const fitAllScale = Math.min((vw - 12) / MAP_W, (vh - 12) / MAP_H);
+  return { vw, vh, fitAllScale };
+}
+
+function clampNavTransform(tx, ty, scale) {
+  const { vw, vh, fitAllScale } = viewportMetrics();
+  navView.minScale = fitAllScale * 0.92;
+  navView.maxScale = Math.max(2.2, fitAllScale * 5.0);
+  const clampedScale = Math.max(navView.minScale, Math.min(navView.maxScale, scale));
+  const scaledW = MAP_W * clampedScale;
+  const scaledH = MAP_H * clampedScale;
+
+  let nextTx = tx;
+  let nextTy = ty;
+  if (scaledW <= vw) {
+    nextTx = (vw - scaledW) / 2;
+  } else {
+    nextTx = Math.max(vw - scaledW - 18, Math.min(18, nextTx));
+  }
+  if (scaledH <= vh) {
+    nextTy = (vh - scaledH) / 2;
+  } else {
+    nextTy = Math.max(vh - scaledH - 18, Math.min(18, nextTy));
+  }
+  return { tx: nextTx, ty: nextTy, scale: clampedScale };
+}
+
+function syncRouteScaleStyles() {
+  const inv = 1 / Math.max(0.18, navView.scale);
+  if (navCanvasEl) {
+    navCanvasEl.style.setProperty('--pin-inv', inv.toFixed(4));
+  }
+  const casing = document.getElementById('navRouteCasing');
+  const base = document.getElementById('navRouteBase');
+  const prog = document.getElementById('navRouteProgress');
+  if (casing) casing.setAttribute('stroke-width', (10 * inv).toFixed(2));
+  if (base) base.setAttribute('stroke-width', (5.5 * inv).toFixed(2));
+  if (prog) prog.setAttribute('stroke-width', (6.5 * inv).toFixed(2));
+  document.querySelectorAll('#navRouteArrows .nav-arrow-glyph').forEach(g => {
+    const x = g.dataset.x;
+    const y = g.dataset.y;
+    const ang = g.dataset.ang;
+    g.setAttribute('transform', `translate(${x},${y}) scale(${inv.toFixed(4)}) rotate(${ang})`);
+  });
+}
+
+function applyNavTransform(animate = false) {
+  if (!navCanvasEl) return;
+  const clamped = clampNavTransform(navView.tx, navView.ty, navView.scale);
+  navView.tx = clamped.tx;
+  navView.ty = clamped.ty;
+  navView.scale = clamped.scale;
+  navCanvasEl.classList.toggle('is-animating', Boolean(animate));
+  navCanvasEl.style.transform = `translate3d(${navView.tx.toFixed(2)}px, ${navView.ty.toFixed(2)}px, 0) scale(${navView.scale.toFixed(5)})`;
+  syncRouteScaleStyles();
+}
+
+function setupNavGestures() {
+  if (navGesturesReady || !navViewportEl) return;
+  navGesturesReady = true;
+
+  const pinchInfo = () => {
+    const pts = [...navPointers.values()];
+    if (pts.length < 2) return null;
+    const dx = pts[1].x - pts[0].x;
+    const dy = pts[1].y - pts[0].y;
+    return {
+      mx: (pts[0].x + pts[1].x) / 2,
+      my: (pts[0].y + pts[1].y) / 2,
+      dist: Math.max(10, Math.hypot(dx, dy))
+    };
+  };
+
+  navViewportEl.addEventListener('pointerdown', e => {
+    if (e.target.closest('.lf-bldg-btn')) return;
+    navViewportEl.setPointerCapture?.(e.pointerId);
+    navPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    navViewportEl.classList.add('is-dragging');
+    navCanvasEl?.classList.remove('is-animating');
+    navPinchState = navPointers.size >= 2 ? pinchInfo() : null;
+  });
+
+  navViewportEl.addEventListener('pointermove', e => {
+    if (!navPointers.has(e.pointerId)) return;
+    const prev = navPointers.get(e.pointerId);
+    navPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (navPointers.size >= 2) {
+      const nextPinch = pinchInfo();
+      if (navPinchState && nextPinch) {
+        const rect = navViewportEl.getBoundingClientRect();
+        const factor = nextPinch.dist / navPinchState.dist;
+        const targetScale = navView.scale * factor;
+        const mapX = (navPinchState.mx - rect.left - navView.tx) / navView.scale;
+        const mapY = (navPinchState.my - rect.top - navView.ty) / navView.scale;
+        const clamped = clampNavTransform(
+          (nextPinch.mx - rect.left) - mapX * targetScale,
+          (nextPinch.my - rect.top) - mapY * targetScale,
+          targetScale
+        );
+        navView.tx = clamped.tx;
+        navView.ty = clamped.ty;
+        navView.scale = clamped.scale;
+        applyNavTransform(false);
+      }
+      navPinchState = nextPinch;
+      return;
+    }
+
+    const dx = e.clientX - prev.x;
+    const dy = e.clientY - prev.y;
+    navView.tx += dx;
+    navView.ty += dy;
+    applyNavTransform(false);
+  });
+
+  const endPointer = e => {
+    navPointers.delete(e.pointerId);
+    if (navPointers.size < 2) navPinchState = null;
+    if (navPointers.size === 0) navViewportEl.classList.remove('is-dragging');
+  };
+  navViewportEl.addEventListener('pointerup', endPointer);
+  navViewportEl.addEventListener('pointercancel', endPointer);
+
+  navViewportEl.addEventListener('wheel', e => {
+    e.preventDefault();
+    const rect = navViewportEl.getBoundingClientRect();
+    const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+    const targetScale = navView.scale * factor;
+    const mapX = (e.clientX - rect.left - navView.tx) / navView.scale;
+    const mapY = (e.clientY - rect.top - navView.ty) / navView.scale;
+    navView.tx = (e.clientX - rect.left) - mapX * targetScale;
+    navView.ty = (e.clientY - rect.top) - mapY * targetScale;
+    navView.scale = targetScale;
+    applyNavTransform(false);
+  }, { passive: false });
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(() => {
+      const navScreen = document.getElementById('navigation');
+      if (navScreen && navScreen.classList.contains('active')) {
+        fitRouteView(false);
+      }
+    });
+    ro.observe(navViewportEl);
+  } else {
+    window.addEventListener('resize', () => {
+      const navScreen = document.getElementById('navigation');
+      if (navScreen && navScreen.classList.contains('active')) {
+        fitRouteView(false);
+      }
+    });
+  }
+}
+
+function zoomNavMap(factor) {
+  if (!navViewportEl) return;
+  const { vw, vh } = viewportMetrics();
+  const cx = vw / 2;
+  const cy = vh / 2;
+  const mapX = (cx - navView.tx) / navView.scale;
+  const mapY = (cy - navView.ty) / navView.scale;
+  const targetScale = navView.scale * factor;
+  navView.tx = cx - mapX * targetScale;
+  navView.ty = cy - mapY * targetScale;
+  navView.scale = targetScale;
+  applyNavTransform(true);
+}
+
+function initNavigationDemo() {
+  initNavigationSelects();
+  navViewportEl = document.getElementById('navMapViewport');
+  navCanvasEl = document.getElementById('navMapCanvas');
+  if (!navViewportEl || !navCanvasEl) return;
+  setupNavGestures();
+  if (demoStartIdx < 0 && demoEndIdx < 0) {
+    renderNavBuildingMarkers(-1, -1);
+  }
+  requestAnimationFrame(() => fitRouteView(false));
+}
+
+function markerSideForBuilding(b, otherB) {
+  if (otherB) {
+    const closeX = Math.abs(b.x - otherB.x) < 24;
+    const closeY = Math.abs(b.y - otherB.y) < 20;
+    if (closeX && closeY) {
+      return b.y <= otherB.y ? 'side-top' : 'side-bottom';
+    }
+  }
+  if (b.x > 54) return 'side-left';
+  return 'side-right';
+}
+
+function renderNavBuildingMarkers(startIdx, endIdx, startCustomName, endCustomName) {
+  const layer = document.getElementById('navMapMarkers');
+  if (!layer) return;
+  const buildings = DB.buildings || [];
+  const hasSelection = startIdx >= 0 || endIdx >= 0;
+  const startB = buildings[startIdx] || null;
+  const endB = buildings[endIdx] || null;
+
+  layer.innerHTML = buildings.map((b, i) => {
+    if (typeof b.x !== 'number' || typeof b.y !== 'number') return '';
+    const isSingle = startIdx >= 0 && i === startIdx && i === endIdx;
+    const isStart = !isSingle && i === startIdx;
+    const isEnd = !isSingle && i === endIdx;
+    const left = clampPct(b.x);
+    const top = clampPct(b.y);
+
+    if (!isSingle && !isStart && !isEnd) {
+      const inner = hasSelection
+        ? `<div class="lf-bldg-muted" aria-hidden="true"></div>`
+        : `<span class="lf-bldg-idle-pill">${esc(b.code || b.name)}</span>`;
+      return `<button type="button" class="lf-bldg-btn" style="left:${left}%;top:${top}%" title="${esc(b.name)}" aria-label="${esc(b.name)}" onclick="showToast('${esc(b.name)}${b.code ? ' (' + esc(b.code) + ')' : ''}')">${inner}</button>`;
+    }
+
+    const role = isSingle ? 'single' : (isStart ? 'start' : 'end');
+    const tagText = isSingle ? 'SELECTED' : (isStart ? 'START' : 'DESTINATION');
+    const displayName = isSingle
+      ? b.name
+      : (isStart ? (startCustomName || b.name) : (endCustomName || b.name));
+    const sideClass = isSingle
+      ? (b.x > 54 ? 'side-left' : 'side-right')
+      : markerSideForBuilding(b, isStart ? endB : startB);
+
+    let iconSvg = '';
+    if (isStart) {
+      iconSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>';
+    } else if (isEnd) {
+      iconSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>';
+    } else {
+      iconSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path><path d="M9 21V12h6v9"></path></svg>';
+    }
+
+    return `<button type="button" class="lf-bldg-btn is-selected ${isEnd ? 'is-end' : ''}" style="left:${left}%;top:${top}%" title="${esc(tagText + ': ' + b.name)}" aria-label="${esc(tagText + ': ' + b.name)}" onclick="showToast('${esc(tagText + ': ' + b.name)}')">
+      <div class="lf-pin-anchor">
+        <span class="lf-pin-halo ${role}"></span>
+        <span class="lf-pin-core ${role}">${iconSvg}</span>
+        <span class="lf-pin-label ${role} ${sideClass}">
+          <span class="lf-pin-tag">${tagText}</span>
+          <span class="lf-pin-name">${esc(displayName)}</span>
+        </span>
+      </div>
+    </button>`;
+  }).join('');
+}
+
+function swapRoutePlaces() {
+  const fromSel = document.getElementById('fromPlace');
+  const toSel = document.getElementById('toPlace');
+  if (!fromSel || !toSel) return;
+  const tmp = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value = tmp;
+  if (demoStartIdx >= 0 || demoEndIdx >= 0) planRoute();
+}
+
+function openDemoRouteTo(buildingIndex, placeValue) {
+  initNavigationSelects();
+  const toSel = document.getElementById('toPlace');
+  const fromSel = document.getElementById('fromPlace');
+  const targetVal = placeValue && resolveNavPlace(placeValue) ? placeValue : `b:${buildingIndex}`;
+  if (toSel && buildingIndex >= 0) {
+    if ([...toSel.options].some(o => o.value === targetVal)) {
+      toSel.value = targetVal;
+    }
+    if (fromSel && fromSel.value === toSel.value) {
+      const { buildingOpts } = getNavPlaces();
+      const fallback = buildingOpts.find(p => p.buildingIdx !== buildingIndex);
+      if (fallback) fromSel.value = fallback.value;
+    }
+  }
+  openScreen('navigation');
+  requestAnimationFrame(() => planRoute());
+}
+
+function updatePlaybackUI(statusText) {
+  const playBtn = document.getElementById('demoPlayBtn');
+  const replayBtn = document.getElementById('demoReplayBtn');
+  const fill = document.getElementById('demoProgressFill');
+  const track = document.getElementById('demoProgressTrack');
+  const statusEl = document.getElementById('demoRouteStatus');
+  const hasRoute = demoWaypointsPx.length >= 2;
+  if (playBtn) {
+    playBtn.disabled = !hasRoute;
+    playBtn.textContent = demoPlaying ? 'Pause' : (demoProgress >= 1 ? 'Play Again' : 'Play');
+  }
+  if (replayBtn) replayBtn.disabled = !hasRoute;
+  const pct = Math.round(Math.max(0, Math.min(1, demoProgress)) * 100);
+  if (fill) fill.style.width = pct + '%';
+  if (track) track.setAttribute('aria-valuenow', String(pct));
+  if (statusEl && statusText) statusEl.textContent = statusText;
+}
+
+function positionAndHeadingAtProgress(p) {
+  if (!demoWaypointsPct.length) return { xPct: 50, yPct: 50, xPx: MAP_W / 2, yPx: MAP_H / 2, angleDeg: 0 };
+  if (demoWaypointsPct.length === 1 || demoTotalDist <= 0) {
+    const [xPct, yPct] = demoWaypointsPct[0];
+    const [xPx, yPx] = demoWaypointsPx[0];
+    return { xPct, yPct, xPx, yPx, angleDeg: 0 };
+  }
+  const target = Math.max(0, Math.min(1, p)) * demoTotalDist;
+  for (let i = 1; i < demoCumDist.length; i++) {
+    if (target <= demoCumDist[i] || i === demoCumDist.length - 1) {
+      const segStart = demoCumDist[i - 1];
+      const segLen = demoCumDist[i] - segStart || 1;
+      const t = Math.max(0, Math.min(1, (target - segStart) / segLen));
+      const [xp1, yp1] = demoWaypointsPct[i - 1];
+      const [xp2, yp2] = demoWaypointsPct[i];
+      const [x1, y1] = demoWaypointsPx[i - 1];
+      const [x2, y2] = demoWaypointsPx[i];
+      const angleDeg = Math.atan2(x2 - x1, -(y2 - y1)) * (180 / Math.PI);
+      return {
+        xPct: clampPct(xp1 + (xp2 - xp1) * t),
+        yPct: clampPct(yp1 + (yp2 - yp1) * t),
+        xPx: x1 + (x2 - x1) * t,
+        yPx: y1 + (y2 - y1) * t,
+        angleDeg
+      };
+    }
+  }
+  const lastPct = demoWaypointsPct[demoWaypointsPct.length - 1];
+  const lastPx = demoWaypointsPx[demoWaypointsPx.length - 1];
+  return { xPct: lastPct[0], yPct: lastPct[1], xPx: lastPx[0], yPx: lastPx[1], angleDeg: 0 };
+}
+
+function traversedSvgPointsAtProgress(p) {
+  if (!demoWaypointsPx.length) return '';
+  if (p <= 0) return `${demoWaypointsPx[0][0].toFixed(1)},${demoWaypointsPx[0][1].toFixed(1)}`;
+  if (p >= 1) return demoWaypointsPx.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const target = p * demoTotalDist;
+  const pts = [demoWaypointsPx[0]];
+  for (let i = 1; i < demoCumDist.length; i++) {
+    if (target >= demoCumDist[i]) {
+      pts.push(demoWaypointsPx[i]);
+    } else {
+      const cur = positionAndHeadingAtProgress(p);
+      pts.push([cur.xPx, cur.yPx]);
+      break;
+    }
+  }
+  return pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+}
+
+function renderDemoFrame() {
+  const mover = document.getElementById('navMovingMarker');
+  const progLine = document.getElementById('navRouteProgress');
+  if (!demoWaypointsPx.length) {
+    if (mover) mover.style.display = 'none';
+    if (progLine) progLine.setAttribute('points', '');
+    return;
+  }
+  const { xPct, yPct, angleDeg } = positionAndHeadingAtProgress(demoProgress);
+  if (mover) {
+    mover.style.display = 'grid';
+    mover.style.left = xPct.toFixed(3) + '%';
+    mover.style.top = yPct.toFixed(3) + '%';
+    const core = mover.querySelector('.lf-mover-core');
+    if (core) core.style.transform = `rotate(${angleDeg.toFixed(1)}deg)`;
+  }
+  if (progLine) {
+    progLine.setAttribute('points', traversedSvgPointsAtProgress(demoProgress));
+  }
+}
+
+function renderRouteArrows() {
+  const group = document.getElementById('navRouteArrows');
+  if (!group) return;
+  if (demoWaypointsPx.length < 2 || demoTotalDist <= 0) {
+    group.innerHTML = '';
+    return;
+  }
+  const inv = 1 / Math.max(0.18, navView.scale);
+  const spacing = 95;
+  const edgeMargin = 55;
+  const samples = [];
+  if (demoTotalDist <= edgeMargin * 2) {
+    samples.push(positionAndHeadingAtProgress(0.5));
+  } else {
+    for (let d = edgeMargin; d <= demoTotalDist - edgeMargin; d += spacing) {
+      samples.push(positionAndHeadingAtProgress(d / demoTotalDist));
+    }
+  }
+  group.innerHTML = samples.map(s => `
+    <g class="nav-arrow-glyph" data-x="${s.xPx.toFixed(1)}" data-y="${s.yPx.toFixed(1)}" data-ang="${s.angleDeg.toFixed(1)}" transform="translate(${s.xPx.toFixed(1)},${s.yPx.toFixed(1)}) scale(${inv.toFixed(4)}) rotate(${s.angleDeg.toFixed(1)})">
+      <circle cx="0" cy="0" r="7.5" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.8"></circle>
+      <path d="M-3.2 1.8 L0 -2.4 L3.2 1.8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>`).join('');
+}
+
+function clearSvgRoute() {
+  ['navRouteCasing', 'navRouteBase', 'navRouteProgress'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('points', '');
+  });
+  const arrows = document.getElementById('navRouteArrows');
+  if (arrows) arrows.innerHTML = '';
+  const mover = document.getElementById('navMovingMarker');
+  if (mover) mover.style.display = 'none';
+}
+
+function stepDemoAnimation(ts) {
+  if (!demoPlaying) return;
+  if (!demoLastTs) demoLastTs = ts;
+  const dt = Math.min(100, ts - demoLastTs);
+  demoLastTs = ts;
+  const baseDurationMs = 8500;
+  demoProgress += (dt * demoSpeed) / baseDurationMs;
+  if (demoProgress >= 1) {
+    demoProgress = 1;
+    demoPlaying = false;
+    renderDemoFrame();
+    updatePlaybackUI('Reached Destination');
+    return;
+  }
+  renderDemoFrame();
+  updatePlaybackUI(`Moving (${demoSpeed}x)`);
+  demoRafId = requestAnimationFrame(stepDemoAnimation);
+}
+
+function startDemoPlayback() {
+  if (demoWaypointsPx.length < 2) return;
+  if (demoProgress >= 1) demoProgress = 0;
+  demoPlaying = true;
+  demoLastTs = 0;
+  cancelAnimationFrame(demoRafId);
+  updatePlaybackUI(`Moving (${demoSpeed}x)`);
+  demoRafId = requestAnimationFrame(stepDemoAnimation);
+}
+
+function pauseDemoRoute() {
+  if (!demoPlaying) return;
+  demoPlaying = false;
+  cancelAnimationFrame(demoRafId);
+  updatePlaybackUI('Paused');
+}
+
+function toggleRoutePlayback() {
+  if (demoWaypointsPx.length < 2) return;
+  if (demoPlaying) pauseDemoRoute();
+  else startDemoPlayback();
+}
+
+function replayDemoRoute() {
+  if (demoWaypointsPx.length < 2) return;
+  demoProgress = 0;
+  renderDemoFrame();
+  startDemoPlayback();
+}
+
+function setRouteSpeed(speed, btn) {
+  demoSpeed = Number(speed) || 1;
+  document.querySelectorAll('.nav-speed-btn').forEach(el => el.classList.toggle('active', Number(el.dataset.speed) === demoSpeed));
+  if (demoPlaying) updatePlaybackUI(`Moving (${demoSpeed}x)`);
+}
+
+function fitRouteView(animate = true) {
+  if (!navViewportEl || !navCanvasEl) return;
+  const { vw, vh, fitAllScale } = viewportMetrics();
+
+  if (demoWaypointsPx.length >= 2) {
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    demoWaypointsPx.forEach(([x, y]) => {
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+    });
+    const padX = Math.min(82, vw * 0.22);
+    const padY = Math.min(68, vh * 0.19);
+    const availW = Math.max(110, vw - padX * 2);
+    const availH = Math.max(110, vh - padY * 2);
+    const boxW = Math.max(120, maxX - minX);
+    const boxH = Math.max(120, maxY - minY);
+    const rawScale = Math.min(availW / boxW, availH / boxH);
+    const targetScale = Math.max(fitAllScale, Math.min(fitAllScale * 3.0, rawScale));
+    const cx = (minX + maxX) / 2;
+    const cy = (minY + maxY) / 2;
+    navView.scale = targetScale;
+    navView.tx = vw / 2 - cx * targetScale;
+    navView.ty = vh / 2 - cy * targetScale;
+    applyNavTransform(animate);
+    return;
+  }
+
+  if (demoSinglePct) {
+    const [cx, cy] = pctToSvg(demoSinglePct[0], demoSinglePct[1]);
+    const targetScale = Math.max(fitAllScale * 1.45, Math.min(fitAllScale * 2.4, 0.85));
+    navView.scale = targetScale;
+    navView.tx = vw / 2 - cx * targetScale;
+    navView.ty = vh / 2 - cy * targetScale;
+    applyNavTransform(animate);
+    return;
+  }
+
+  navView.scale = fitAllScale;
+  navView.tx = (vw - MAP_W * fitAllScale) / 2;
+  navView.ty = (vh - MAP_H * fitAllScale) / 2;
+  applyNavTransform(animate);
+}
+
+function showSameBuildingTransfer(startPlace, endPlace) {
+  pauseDemoRoute();
+  demoPlaying = false;
+  demoWaypointsPct = [];
+  demoWaypointsPx = [];
+  demoCumDist = [];
+  demoTotalDist = 0;
+  demoProgress = 0;
+  demoStartIdx = startPlace.buildingIdx;
+  demoEndIdx = endPlace.buildingIdx;
+
+  const b = startPlace.building;
+  demoSinglePct = [clampPct(b.x), clampPct(b.y)];
+  clearSvgRoute();
+  renderNavBuildingMarkers(demoStartIdx, demoEndIdx);
+  fitRouteView(true);
+
+  const startFloorTxt = startPlace.floor ? `Level ${startPlace.floor}` : (startPlace.location || 'listed floor');
+  const endFloorTxt = endPlace.floor ? `Level ${endPlace.floor}` : (endPlace.location || 'listed floor');
+  const steps = [
+    `Start at <b>${esc(startPlace.shortName)}</b> (${esc(b.name)} · ${esc(startFloorTxt)}).`,
+    `Stay inside <b>${esc(b.name)}</b> and use the stairs or lift to move from <b>${esc(startFloorTxt)}</b> to <b>${esc(endFloorTxt)}</b>.`,
+    `Arrive at <b>${esc(endPlace.shortName)}</b> (${esc(endFloorTxt)}).`
+  ];
+
+  const card = document.getElementById('navTransferCard');
+  const titleEl = document.getElementById('navTransferTitle');
+  const stepsEl = document.getElementById('navTransferSteps');
+  const playbackRow = document.getElementById('navPlaybackControls');
+  const badgeEl = document.getElementById('navMapBadge');
+  if (titleEl) titleEl.textContent = `Inside ${b.name} · Indoor Floor Transfer`;
+  if (stepsEl) stepsEl.innerHTML = steps.map(s => `<li>${s}</li>`).join('');
+  if (card) card.classList.add('visible');
+  if (playbackRow) playbackRow.style.display = 'none';
+  if (badgeEl) badgeEl.textContent = `${b.name} Highlighted`;
+
+  const labelEl = document.getElementById('demoRouteLabel');
+  if (labelEl) labelEl.textContent = `${startPlace.shortName} → ${endPlace.shortName} (Same Building)`;
+  updatePlaybackUI('Indoor Transfer');
+}
+
+function planRoute() {
+  initNavigationDemo();
+  const fromSel = document.getElementById('fromPlace');
+  const toSel = document.getElementById('toPlace');
+  const startPlace = resolveNavPlace(fromSel ? fromSel.value : '');
+  const endPlace = resolveNavPlace(toSel ? toSel.value : '');
+
+  if (!startPlace || !endPlace) {
+    showToast('Select both a starting location and a destination.');
+    return;
+  }
+  if (startPlace.value === endPlace.value) {
+    showToast('Choose two different places or floors to view directions.');
+    return;
+  }
+
+  if (startPlace.buildingIdx === endPlace.buildingIdx) {
+    showSameBuildingTransfer(startPlace, endPlace);
+    return;
+  }
+
+  const card = document.getElementById('navTransferCard');
+  const playbackRow = document.getElementById('navPlaybackControls');
+  const badgeEl = document.getElementById('navMapBadge');
+  if (card) card.classList.remove('visible');
+  if (playbackRow) playbackRow.style.display = '';
+  if (badgeEl) badgeEl.textContent = 'Illustrative Pathway Demo';
+
+  const startB = startPlace.building;
+  const endB = endPlace.building;
+  demoStartIdx = startPlace.buildingIdx;
+  demoEndIdx = endPlace.buildingIdx;
+  demoSinglePct = null;
+
+  demoWaypointsPct = shortestDemoPath(startB, endB);
+  demoWaypointsPx = demoWaypointsPct.map(([x, y]) => pctToSvg(x, y));
+  demoCumDist = [0];
+  demoTotalDist = 0;
+  for (let i = 1; i < demoWaypointsPx.length; i++) {
+    const d = Math.hypot(
+      demoWaypointsPx[i][0] - demoWaypointsPx[i - 1][0],
+      demoWaypointsPx[i][1] - demoWaypointsPx[i - 1][1]
+    );
+    demoTotalDist += d;
+    demoCumDist.push(demoTotalDist);
+  }
+
+  const startLabel = startPlace.kind === 'office' ? `${startPlace.shortName} (${startB.code || startB.name})` : startB.name;
+  const endLabel = endPlace.kind === 'office' ? `${endPlace.shortName} (${endB.code || endB.name})` : endB.name;
+
+  const fullPointsStr = demoWaypointsPx.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const casingEl = document.getElementById('navRouteCasing');
+  const baseEl = document.getElementById('navRouteBase');
+  if (casingEl) casingEl.setAttribute('points', fullPointsStr);
+  if (baseEl) baseEl.setAttribute('points', fullPointsStr);
+
+  renderNavBuildingMarkers(demoStartIdx, demoEndIdx, startLabel, endLabel);
+  fitRouteView(true);
+  renderRouteArrows();
+
+  const labelEl = document.getElementById('demoRouteLabel');
+  if (labelEl) labelEl.textContent = `${startLabel} → ${endLabel}`;
+  demoProgress = 0;
+  renderDemoFrame();
+  startDemoPlayback();
+}
+
+/* Interactive #mapFrame Coordinate Markers */
+function matchingOfficesForBuilding(building) {
+  const code = String(building.code || '').trim().toLowerCase();
+  const name = String(building.name || '').trim().toLowerCase();
+  return (DB.offices || []).map((item, index) => ({ item, index })).filter(({ item }) => {
+    const b = String(item.building || '').toLowerCase();
+    const n = String(item.name || '').toLowerCase();
+    if (!code) return b.includes(name);
+    const regex = new RegExp('(^|[^a-z0-9])' + code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^a-z0-9]|$)', 'i');
+    return regex.test(b) || regex.test(n);
+  });
+}
+
+function renderMapInfo(index) {
+  const info = document.getElementById('mapInfo');
+  if (!info) return;
+  const buildings = DB.buildings || [];
+  if (index === null || index === undefined || !buildings[index]) {
+    const count = buildings.filter(b => typeof b.x === 'number' && typeof b.y === 'number').length;
+    info.innerHTML = `<div class="maplegend"><span>Tap any pin (${count} campus locations) for verified details</span><span class="maplegend-tag tabular">CU Map</span></div>`;
+    return;
+  }
+  const b = buildings[index];
+  const matches = matchingOfficesForBuilding(b);
+  const actions = [];
+  if (b.screen === 'c3' || exactC3(b.name)) {
+    actions.push(`<button class="map-chip-btn" type="button" onclick="openScreen('c3')">Open C3 Room Finder</button>`);
+  }
+  actions.push(`<button class="map-chip-btn" type="button" onclick="openDemoRouteTo(${index})">Demo Route Here</button>`);
+  matches.slice(0, 2).forEach(({ item, index: oi }) => {
+    actions.push(`<button class="map-chip-btn" type="button" onclick="showDetail('office',${oi})">${esc(item.name)}</button>`);
+  });
+  const floorsText = Array.isArray(b.floors) && b.floors.length ? ` · ${b.floors.length - 1} floors + Ground` : '';
+  info.innerHTML = `
+    <div class="mapinfo-head">
+      <div>
+        <div class="mapinfo-cat">${esc(b.category || 'Campus Building')}${esc(floorsText)}</div>
+        <div class="mapinfo-title">${esc(b.name)}</div>
+      </div>
+      <button class="mapinfo-close" type="button" aria-label="Close building details" onclick="selectMapBuilding(null)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <p class="mapinfo-desc">${esc(b.description || 'Campus location')}</p>
+    ${actions.length ? `<div class="mapinfo-actions">${actions.join('')}</div>` : ''}`;
+}
+
+function selectMapBuilding(index) {
+  selectedBuildingIndex = (selectedBuildingIndex === index) ? null : index;
+  document.querySelectorAll('#mapMarkers .mapmarker, #mapZoomMarkers .mapmarker').forEach(btn => {
+    btn.classList.toggle('active', Number(btn.dataset.index) === selectedBuildingIndex);
+  });
+  renderMapInfo(selectedBuildingIndex);
+}
+
+function populateMapMarkers() {
+  const layer = document.getElementById('mapMarkers');
+  if (!layer) return;
+  const buildings = DB.buildings || [];
+  layer.innerHTML = '';
+  buildings.forEach((b, index) => {
+    if (typeof b.x !== 'number' || typeof b.y !== 'number') return;
+    const marker = document.createElement('button');
+    marker.type = 'button';
+    marker.className = 'mapmarker' + (selectedBuildingIndex === index ? ' active' : '');
+    marker.dataset.index = String(index);
+    marker.style.left = b.x + '%';
+    marker.style.top = b.y + '%';
+    marker.title = b.name;
+    marker.setAttribute('aria-label', b.name);
+    marker.textContent = b.code || b.name;
+    marker.addEventListener('click', () => selectMapBuilding(index));
+    layer.appendChild(marker);
+  });
+  renderMapInfo(selectedBuildingIndex);
+}
+
+function loadMap() {
+  const frame = document.getElementById('mapFrame');
+  if (!frame) return;
+  const image = new Image();
+  image.alt = 'Original Chandigarh University campus map';
+  image.onload = () => {
+    frame.innerHTML = '';
+    const canvas = document.createElement('div');
+    canvas.className = 'mapcanvas';
+    canvas.appendChild(image);
+    const markers = document.createElement('div');
+    markers.className = 'mapmarkers';
+    markers.id = 'mapMarkers';
+    canvas.appendChild(markers);
+    const info = document.createElement('div');
+    info.className = 'mapinfo';
+    info.id = 'mapInfo';
+    frame.appendChild(canvas);
+    frame.appendChild(info);
+    populateMapMarkers();
+  };
+  image.onerror = () => {
+    frame.innerHTML = '<div class="mapmissing">Campus map image not found.<br>Make sure <b>cu_campus_map.jpg</b> is placed beside <b>index.html</b>.</div>';
+  };
+  image.src = './cu_campus_map.jpg';
+}
+
+/* Buildings Sheet & Zoomable Map Modal */
+function openBuildingsSheet() {
+  const body = document.getElementById('buildingsSheetBody');
+  const buildings = DB.buildings || [];
+  body.innerHTML = buildings.map((b, i) => `
+    <button class="item-card" type="button" onclick="closeBuildingsSheet();locateOnCampusMap(${i})">
+      <div class="avatar">${esc(b.code || 'CU')}</div>
+      <div class="grow">
+        <div class="item-name">${esc(b.name)}</div>
+        <div class="item-sub">${esc(b.category || 'Campus Block')}</div>
+        <div class="item-loc">${esc(b.description || '')}</div>
+      </div>
+      ${chevronSvg()}
+    </button>
+  `).join('');
+  document.getElementById('buildingsModal').classList.add('open');
+}
+
+function closeBuildingsSheet() {
+  document.getElementById('buildingsModal').classList.remove('open');
+}
+
+function openMapZoom() {
+  const zoomLayer = document.getElementById('mapZoomMarkers');
+  const buildings = DB.buildings || [];
+  zoomLayer.innerHTML = '';
+  buildings.forEach((b, index) => {
+    if (typeof b.x !== 'number' || typeof b.y !== 'number') return;
+    const marker = document.createElement('button');
+    marker.type = 'button';
+    marker.className = 'mapmarker' + (selectedBuildingIndex === index ? ' active' : '');
+    marker.dataset.index = String(index);
+    marker.style.left = b.x + '%';
+    marker.style.top = b.y + '%';
+    marker.title = b.name;
+    marker.setAttribute('aria-label', b.name);
+    marker.textContent = b.code || b.name;
+    marker.addEventListener('click', () => {
+      selectMapBuilding(index);
+      closeMapZoom();
+      showToast(b.name);
+    });
+    zoomLayer.appendChild(marker);
+  });
+  document.getElementById('mapZoomModal').classList.add('open');
+}
+
+function closeMapZoom() {
+  document.getElementById('mapZoomModal').classList.remove('open');
+  document.getElementById('mapZoomStage').classList.remove('zoomed');
+  document.getElementById('zoomToggleBtn').textContent = 'Zoom 1.75x';
+}
+
+function toggleMapZoom() {
+  const stage = document.getElementById('mapZoomStage');
+  const btn = document.getElementById('zoomToggleBtn');
+  const zoomed = stage.classList.toggle('zoomed');
+  btn.textContent = zoomed ? 'Reset Zoom' : 'Zoom 1.75x';
+}
+
+function renderProfileStats() {
+  const box = document.getElementById('directoryStats');
+  if (!box) return;
+  box.innerHTML = `
+    <div class="stat-box"><div class="stat-num">${(DB.teachers || []).length}</div><div class="stat-lbl">Faculty</div></div>
+    <div class="stat-box"><div class="stat-num">${(DB.offices || []).length}</div><div class="stat-lbl">Offices &amp; Centres</div></div>
+    <div class="stat-box"><div class="stat-num">${(DB.buildings || []).length}</div><div class="stat-lbl">Mapped Blocks</div></div>
+  `;
+}
+
+function installApp() {
+  if (deferredInstall) {
+    deferredInstall.prompt();
+    deferredInstall = null;
+  } else {
+    showToast('Open browser menu (⋮) and choose Install app / Add to Home screen.');
+  }
+}
+
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  deferredInstall = event;
+});
+
 loadMap();
-if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {}));
+}
 </script>
 </body>
 </html>

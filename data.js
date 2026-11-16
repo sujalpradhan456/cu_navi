@@ -193,7 +193,14 @@ window.CUNAV_DATA = {
     rooms: [],
     buildings: [
         {
+            id: "block-c3",
+            code: "C3",
             name: "Block C3",
+            category: "Academic Block",
+            x: 11,
+            y: 68.2,
+            description: "Engineering Foundation-05 faculty cabins, Microsoft Skill Centre & C3 Library",
+            screen: "c3",
             floors: [
                 "Ground",
                 "1",
@@ -204,6 +211,105 @@ window.CUNAV_DATA = {
                 "6",
                 "7"
             ]
+        },
+        {
+            id: "block-b1",
+            code: "B1",
+            name: "Academic Block B1",
+            category: "Academic & Admin",
+            x: 28.5,
+            y: 28.5,
+            description: "Office of the Registrar (Room 207) and academic corridors"
+        },
+        {
+            id: "block-b2",
+            code: "B2",
+            name: "Academic Block B2",
+            category: "Academic & Admin",
+            x: 28.5,
+            y: 40,
+            description: "Exam, Accounts/Fees, Transport and DCPD corridors"
+        },
+        {
+            id: "block-b4",
+            code: "B4",
+            name: "Block B4",
+            category: "Academic & Research",
+            x: 13,
+            y: 46.8,
+            description: "Registration & Transcripts (General) and Kalpana Chawla Space & Research Centre"
+        },
+        {
+            id: "dsw",
+            code: "DSW",
+            name: "DSW Block",
+            category: "Student Services",
+            x: 24.8,
+            y: 46.8,
+            description: "Department of Student Welfare opposite B3 Parking"
+        },
+        {
+            id: "block-b3",
+            code: "B3",
+            name: "Academic Block B3",
+            category: "Academic & Wellbeing",
+            x: 36,
+            y: 46.8,
+            description: "Centre for Student Wellbeing (DSW Counselling) opposite Basketball Court"
+        },
+        {
+            id: "block-a1",
+            code: "A1",
+            name: "Main Admin Block (Block A1)",
+            category: "Administration",
+            x: 60.5,
+            y: 15.2,
+            description: "Central Campus Admin, Scholarship Branch & Registration (SC/ST)"
+        },
+        {
+            id: "block-c1",
+            code: "C1",
+            name: "Block C1",
+            category: "Academic & Alumni",
+            x: 45,
+            y: 69.5,
+            description: "Alumni Association (Alumni Cell, Room 213-C)"
+        },
+        {
+            id: "block-c2",
+            code: "C2",
+            name: "Academic Block C2",
+            category: "Academic Block",
+            x: 45,
+            y: 81.5,
+            description: "Academic block adjacent to Main Ground"
+        },
+        {
+            id: "fountain-park",
+            code: "FP",
+            name: "Fountain Park",
+            category: "Landmark",
+            x: 57,
+            y: 38.5,
+            description: "Central campus landmark between Block B1/B3 and A2/A3"
+        },
+        {
+            id: "main-ground",
+            code: "MG",
+            name: "Main Ground",
+            category: "Sports & Events",
+            x: 28.2,
+            y: 75,
+            description: "Central university sports ground flanked by C3, C1 and C2"
+        },
+        {
+            id: "gate-2",
+            code: "G2",
+            name: "Gate 2",
+            category: "Campus Gate",
+            x: 40.5,
+            y: 16,
+            description: "Main entry road leading toward Academic Block B1"
         }
     ]
 };
